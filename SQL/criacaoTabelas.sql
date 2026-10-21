@@ -28,7 +28,7 @@ create table sfa.dim_gestao (
 
 -- Dimensao Tempo (Chave inteligente, sem versionamento)
 create table sfa.dim_tempo (
-    sk_tempo int primary key, -- Alterado de serial para integer para receber a data em código
+    sk_tempo int primary key,
     dt_referencia date
 );
     -- TABELAS FATO --
@@ -92,7 +92,7 @@ create table sfa.fato_unidades (
 );
 
 create table sfa.fato_acolhimento (
-	sk_acolhimento serial primary key,
+	pk_acolhimento serial primary key,
 	sk_geografia int references sfa.dim_geografia(sk_geografia),
 	sk_tempo int references sfa.dim_tempo(sk_tempo),
 	sk_gestao int references sfa.dim_gestao(sk_gestao),
@@ -151,9 +151,11 @@ create table sfa.fato_acolhimento (
     nu_mot_abuso_sexual int,
     nu_mot_expl_sexual int,
     nu_mot_conflito_fam int,
+	nu_mot_expl_trabalho int,
+	nu_mot_ameaca_morte int,
+	nu_mot_sit_rua_jovem int,
     nu_mot_negligencia int,
     nu_mot_fam_rua int,
-    nu_mot_carencia_mat int,
 	nu_dest_fam_origem int,
     nu_dest_fam_extensa int,
     nu_dest_adocao int,
@@ -164,12 +166,14 @@ create table sfa.fato_acolhimento (
     nu_readm_adocao int,
     nu_aptos_adocao int,
     nu_apadrinhamento int,
+	nu_sem_visitas_imped int,
+	nu_sem_visitas_sem_imped int,
     nu_pbf int,
     nu_baixa_renda int
 );
 
 create table sfa.fato_equipe (
-	sk_equipe serial primary key,
+	pk_equipe serial primary key,
 	sk_geografia int references sfa.dim_geografia(sk_geografia),
 	sk_tempo int references sfa.dim_tempo(sk_tempo),
 	sk_gestao int references sfa.dim_gestao(sk_gestao),
@@ -183,7 +187,7 @@ create table sfa.fato_equipe (
 );
 
 create table sfa.fato_familias (
-	sk_familia serial primary key,
+	pk_familia serial primary key,
 	sk_geografia int references sfa.dim_geografia(sk_geografia),
 	sk_tempo int references sfa.dim_tempo(sk_tempo),
 	sk_gestao int references sfa.dim_gestao(sk_gestao),
@@ -195,16 +199,3 @@ create table sfa.fato_familias (
 	ds_funcao varchar(150),
 	dt_inicio_exercicio date
 );
-
--- Esquema para tabela auxiliar para funcionamento de mapas no Superset com PostGis --
-create schema if not exists geografia;
-
-create table geografia.municipios_ibge (
-	codigo_ibge varchar(7) primary key,
-	nome_municipio varchar(150),
-	uf varchar(2),
-	geometria geometry(MultiPolygon, 4674)
-);
-
-
-

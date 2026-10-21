@@ -322,7 +322,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
+      <xloc>448</xloc>
       <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
@@ -383,7 +383,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>768</xloc>
+      <xloc>576</xloc>
       <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
@@ -422,43 +422,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>368</xloc>
-      <yloc>192</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Success</name>
-      <description/>
-      <type>SUCCESS</type>
-      <attributes/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>672</xloc>
-      <yloc>192</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Success 2</name>
-      <description/>
-      <type>SUCCESS</type>
-      <attributes/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>880</xloc>
-      <yloc>192</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Success 3</name>
-      <description/>
-      <type>SUCCESS</type>
-      <attributes/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>464</xloc>
+      <xloc>304</xloc>
       <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
@@ -502,115 +466,97 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Success 4</name>
+      <name>Job</name>
       <description/>
-      <type>SUCCESS</type>
-      <attributes/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>272</xloc>
-      <yloc>192</yloc>
-      <attributes_kjc/>
-    </entry>
-    <entry>
-      <name>Fato_Unidades</name>
-      <description/>
-      <type>TRANS</type>
+      <type>JOB</type>
       <attributes/>
       <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>C:\Users\Hirata\Desktop\TCC2\Pentaho\fato\Fato_Unidades.ktr</filename>
-      <transname/>
+      <job_object_id/>
+      <filename>C:/Users/Hirata/Desktop/TCC2/Pentaho/jobs/Job Fatos.kjb</filename>
+      <jobname/>
+      <directory/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
+      <loglevel>Nothing</loglevel>
       <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
+      <pass_export>N</pass_export>
       <run_configuration>Pentaho local</run_configuration>
-      <suppress_result_data>N</suppress_result_data>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
+      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>976</xloc>
+      <xloc>720</xloc>
       <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Success 5</name>
+      <name>Move files</name>
       <description/>
-      <type>SUCCESS</type>
+      <type>MOVE_FILES</type>
       <attributes/>
+      <move_empty_folders>N</move_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <include_subfolders>N</include_subfolders>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>N</create_destination_folder>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <nr_errors_less_than>10</nr_errors_less_than>
+      <success_condition>success_if_no_errors</success_condition>
+      <AddDateBeforeExtension>N</AddDateBeforeExtension>
+      <DoNotKeepFolderStructure>N</DoNotKeepFolderStructure>
+      <iffileexists>do_nothing</iffileexists>
+      <destinationFolder/>
+      <ifmovedfileexists>do_nothing</ifmovedfileexists>
+      <moved_date_time_format/>
+      <create_move_to_folder>N</create_move_to_folder>
+      <add_moved_date>N</add_moved_date>
+      <add_moved_time>N</add_moved_time>
+      <SpecifyMoveFormat>N</SpecifyMoveFormat>
+      <AddMovedDateBeforeExtension>N</AddMovedDateBeforeExtension>
+      <simulate>N</simulate>
+      <fields>
+        <field>
+          <source_filefolder>C:\Users\Hirata\Desktop\TCC2\Planilhas</source_filefolder>
+          <destination_filefolder>C:\Users\Hirata\Desktop\TCC2\Planilhas\Processados</destination_filefolder>
+          <wildcard>.*RH_Familia.*\.csv</wildcard>
+        </field>
+        <field>
+          <source_filefolder>C:\Users\Hirata\Desktop\TCC2\Planilhas</source_filefolder>
+          <destination_filefolder>C:\Users\Hirata\Desktop\TCC2\Planilhas\Processados</destination_filefolder>
+          <wildcard>.*RH_Equipe.*\.csv</wildcard>
+        </field>
+        <field>
+          <source_filefolder>C:\Users\Hirata\Desktop\TCC2\Planilhas</source_filefolder>
+          <destination_filefolder>C:\Users\Hirata\Desktop\TCC2\Planilhas\Processados</destination_filefolder>
+          <wildcard>.*Dados_Gerais.*\.csv</wildcard>
+        </field>
+      </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1072</xloc>
+      <xloc>864</xloc>
       <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
   <hops>
-    <hop>
-      <from>Dim_Geografia</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Success</from>
-      <to>Dim_Gestao</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Dim_Gestao</from>
-      <to>Success 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Dim_Tempo</from>
-      <to>Success 3</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Success 3</from>
-      <to>Dim_Geografia</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
     <hop>
       <from>Start</from>
       <to>Set data</to>
@@ -622,15 +568,6 @@
     </hop>
     <hop>
       <from>Set data</from>
-      <to>Success 4</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Success 4</from>
       <to>Dim_Tempo</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -639,8 +576,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Success 2</from>
-      <to>Fato_Unidades</to>
+      <from>Dim_Tempo</from>
+      <to>Dim_Geografia</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -648,8 +585,26 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Fato_Unidades</from>
-      <to>Success 5</to>
+      <from>Dim_Geografia</from>
+      <to>Dim_Gestao</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Dim_Gestao</from>
+      <to>Job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Job</from>
+      <to>Move files</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
