@@ -72,8 +72,6 @@ As decisões arquiteturais e metodológicas deste projeto foram embasadas nas se
 
 1. **Banco de Dados:** Execute os scripts da pasta `/SQL` em uma instância PostgreSQL local para gerar o schema `sfa`, as tabelas e views.
 
-2. s.
+2. **Pipeline de Dados:** Abra os arquivos da pasta `/Pentaho` no PDI, configure a string de conexão local e execute o fluxo a partir dos `/jobs` para popular o DW utilizando as bases brutas localizadas em `/Planilhas`.
 
-3. **Pipeline de Dados:** Abra os arquivos da pasta `/Pentaho` no PDI, configure a string de conexão local e execute o fluxo a partir dos `/jobs` para popular o DW utilizando as bases em `/Planilhas`.
-
-4. **Visualização:** Conecte o Apache Superset ao banco criado e importe as *Views* (ex: `vw_superset_fato_acolhimento`) como *Datasets* físico
+3. **Visualização:** Conecte o Apache Superset ao banco criado e importe as *Views* (ex: `vw_superset_fato_acolhimento`) como *Datasets* físicos para iniciar as análises.
