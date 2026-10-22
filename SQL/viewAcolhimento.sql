@@ -1,4 +1,4 @@
-create or replace view sfa.vw_superset_fato_acolhimento as select 
+create or replace view sfa.vw_fato_acolhimento as select 
     -- 1. Métricas Gerais de Acolhimento
     fa.nu_acolhidos_atual,
     fa.nu_acolhidos_12m,
