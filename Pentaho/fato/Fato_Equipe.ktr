@@ -493,58 +493,58 @@
   </connection>
   <order>
     <hop>
-      <from>Select values</from>
-      <to>Get variables</to>
+      <from>TR - Seleciona e Renomeia Variáveis</from>
+      <to>TR - Data Referência</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get variables</from>
-      <to>String operations</to>
+      <from>TR - Data Referência</from>
+      <to>TR - Padroniza Textos (Trim)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>String operations</from>
-      <to>Database lookup</to>
+      <from>TR - Padroniza Textos (Trim)</from>
+      <to>LK - sk_geografia</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database lookup</from>
-      <to>Database lookup 2</to>
+      <from>LK - sk_geografia</from>
+      <to>LK - sk_tempo</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database lookup 2</from>
-      <to>Database lookup 3</to>
+      <from>LK - sk_tempo</from>
+      <to>LK - sk_gestao</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database lookup 3</from>
-      <to>Select values 2</to>
+      <from>LK - sk_gestao</from>
+      <to>TR - Remove Campos Auxiliares</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 2</from>
-      <to>If field value is null</to>
+      <from>TR - Remove Campos Auxiliares</from>
+      <to>TR - Trata Nulos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>If field value is null</from>
-      <to>Insert / update</to>
+      <from>TR - Trata Nulos</from>
+      <to>OUT - sfa.fato_equipe</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Text file input</from>
-      <to>Filter rows 2</to>
+      <from>IN - RH Equipe</from>
+      <to>FL - Filtra Entrada de Linha Nulas</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows 2</from>
-      <to>Select values</to>
+      <from>FL - Filtra Entrada de Linha Nulas</from>
+      <to>TR - Seleciona e Renomeia Variáveis</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Text file input</name>
+    <name>IN - RH Equipe</name>
     <type>TextFileInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1348,13 +1348,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
+      <xloc>64</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
+    <name>TR - Seleciona e Renomeia Variáveis</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1699,13 +1699,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
+      <xloc>576</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Get variables</name>
+    <name>TR - Data Referência</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -1738,13 +1738,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
+      <xloc>832</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>String operations</name>
+    <name>TR - Padroniza Textos (Trim)</name>
     <type>StringOperations</type>
     <description/>
     <distribute>Y</distribute>
@@ -1882,13 +1882,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
+      <xloc>1072</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Database lookup</name>
+    <name>LK - sk_geografia</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1936,13 +1936,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>1296</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Database lookup 2</name>
+    <name>LK - sk_tempo</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1984,13 +1984,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
+      <xloc>1472</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Database lookup 3</name>
+    <name>LK - sk_gestao</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -2032,13 +2032,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1248</xloc>
+      <xloc>1632</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 2</name>
+    <name>TR - Remove Campos Auxiliares</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -2128,13 +2128,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1424</xloc>
+      <xloc>1840</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Insert / update</name>
+    <name>OUT - sfa.fato_equipe</name>
     <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
@@ -2234,13 +2234,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1744</xloc>
+      <xloc>2240</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>If field value is null</name>
+    <name>TR - Trata Nulos</name>
     <type>IfNull</type>
     <description/>
     <distribute>Y</distribute>
@@ -2292,13 +2292,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1584</xloc>
+      <xloc>2064</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Filter rows 2</name>
+    <name>FL - Filtra Entrada de Linha Nulas</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -2308,7 +2308,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Select values</send_true_to>
+    <send_true_to>TR - Seleciona e Renomeia Variáveis</send_true_to>
     <send_false_to/>
     <compare>
       <condition>

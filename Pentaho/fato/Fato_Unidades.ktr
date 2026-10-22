@@ -493,168 +493,163 @@
   </connection>
   <order>
     <hop>
-      <from>Modified JavaScript value 2</from>
-      <to>Select values 3 2</to>
+      <from>TR - Lógica Customizada (Java)</from>
+      <to>TR - Remove Variáveis e Modifica Meta-Data</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get variables 2</from>
-      <to>Select values 4 2</to>
+      <from>TR - Data Referência 2</from>
+      <to>TR - Seleciona Variáveis</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database lookup Geografia 2</from>
-      <to>Database lookup</to>
+      <from>LK - sk_geografia 2</from>
+      <to>LK - sk_gestao 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database lookup Geografia</from>
-      <to>Database lookup 2</to>
+      <from>LK - sk_geografia</from>
+      <to>LK - sk_gestao</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get variables</from>
-      <to>Select values 4</to>
+      <from>TR - Seleciona Variáveis</from>
+      <to>TR - Lógica Customizada (Java)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 4 2</from>
-      <to>Modified JavaScript value 2</to>
+      <from>LK - sk_gestao</from>
+      <to>LK - sk_tempo</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database lookup 2</from>
-      <to>Database lookup 3</to>
+      <from>LK - sk_tempo</from>
+      <to>TR - Remove Campos Auxiliares e Modifica Meta-Data</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database lookup 3</from>
-      <to>Select values 5</to>
+      <from>LK - sk_gestao 2</from>
+      <to>LK - sk_tempo 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database lookup</from>
-      <to>Database lookup 3 2</to>
+      <from>LK - sk_tempo 2</from>
+      <to>TR - Remove Campos Auxiliares e Modifica Meta-Data 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database lookup 3 2</from>
-      <to>Select values 5 2</to>
+      <from>TR - Remove Variáveis e Modifica Meta-Data</from>
+      <to>TR - Padroniza Textos (Trim) 3</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 3 2</from>
-      <to>String operations 2</to>
+      <from>TR - Padroniza Textos (Trim) 3</from>
+      <to>LK - sk_geografia 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>String operations 2</from>
-      <to>Database lookup Geografia 2</to>
+      <from>TR - Altera Meta-Data de Variáveis</from>
+      <to>TR - Padroniza Textos (Trim)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 3</from>
-      <to>String operations</to>
+      <from>TR - Padroniza Textos (Trim)</from>
+      <to>LK - sk_geografia</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>String operations</from>
-      <to>Database lookup Geografia</to>
+      <from>FL - Filtra Público Alvo (Crianças / Adolescentes)</from>
+      <to>TR - Data Referência 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows</from>
-      <to>Get variables 2</to>
+      <from>TR - Adiciona Constantes (Modalidade)</from>
+      <to>TR - Data Referência</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Add constants</from>
-      <to>Get variables</to>
+      <from>TR - Concatena Campos</from>
+      <to>TR - Adiciona Constantes (Modalidade)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 4</from>
-      <to>Select values 3</to>
+      <from>TR - Seleciona e Renomeia Variáveis Iniciais</from>
+      <to>TR - Substitui Strings (Limpeza)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Concat fields</from>
-      <to>Add constants</to>
+      <from>TR - Substitui Strings (Limpeza)</from>
+      <to>TR - Concatena Campos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values</from>
-      <to>Replace in string</to>
+      <from>TR - Seleciona e Renomeia e Modifica a Meta-Data de Variáveis Iniciais</from>
+      <to>TR - Substitui Strings (Limpeza) 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Replace in string</from>
-      <to>Concat fields</to>
+      <from>TR - Substitui Strings (Limpeza) 2</from>
+      <to>TR - Concatena Campos 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 2</from>
-      <to>Replace in string 2</to>
+      <from>TR - Remove Campos Auxiliares e Modifica Meta-Data 2</from>
+      <to>TR - Trata Nulos 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Replace in string 2</from>
-      <to>Concat fields 2</to>
+      <from>TR - Trata Nulos 2</from>
+      <to>OUT - sfa.fato_unidades (Unidades de Acolhimento)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 5 2</from>
-      <to>If field value is null 2</to>
+      <from>TR - Remove Campos Auxiliares e Modifica Meta-Data</from>
+      <to>TR - Trata Nulos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>If field value is null 2</from>
-      <to>Insert / update 2</to>
+      <from>TR - Trata Nulos</from>
+      <to>OUT - sfa.fato_unidades (Família Acolhedora)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 5</from>
-      <to>If field value is null</to>
+      <from>FL - Filtra Entrada de Linhas Nulas</from>
+      <to>TR - Seleciona e Renomeia Variáveis Iniciais</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>If field value is null</from>
-      <to>Insert / update</to>
+      <from>FL - Filtra Entrada de Linhas Nulas 2</from>
+      <to>TR - Seleciona e Renomeia e Modifica a Meta-Data de Variáveis Iniciais</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows 2</from>
-      <to>Select values</to>
+      <from>IN - Dados Gerais (Família Acolhedora)</from>
+      <to>FL - Filtra Entrada de Linhas Nulas</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows 2 2</from>
-      <to>Select values 2</to>
+      <from>IN - Unidades Acolhimento</from>
+      <to>FL - Filtra Entrada de Linhas Nulas 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Input Dados Gerais</from>
-      <to>Filter rows 2</to>
+      <from>TR - Concatena Campos 2</from>
+      <to>TR - Padroniza Textos (Trim) 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Input Unidades</from>
-      <to>Filter rows 2 2</to>
+      <from>TR - Padroniza Textos (Trim) 2</from>
+      <to>FL - Filtra Público Alvo (Crianças / Adolescentes)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Concat fields 2</from>
-      <to>String operations 3</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>String operations 3</from>
-      <to>Filter rows</to>
+      <from>TR - Data Referência</from>
+      <to>TR - Altera Meta-Data de Variáveis</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Add constants</name>
+    <name>TR - Adiciona Constantes (Modalidade)</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -687,13 +682,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
+      <xloc>1888</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Concat fields</name>
+    <name>TR - Concatena Campos</name>
     <type>ConcatFields</type>
     <description/>
     <distribute>Y</distribute>
@@ -809,13 +804,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
+      <xloc>1584</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Concat fields 2</name>
+    <name>TR - Concatena Campos 2</name>
     <type>ConcatFields</type>
     <description/>
     <distribute>Y</distribute>
@@ -931,13 +926,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>640</xloc>
-      <yloc>320</yloc>
+      <xloc>1520</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Database lookup</name>
+    <name>LK - sk_gestao 2</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -979,13 +974,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2192</xloc>
-      <yloc>320</yloc>
+      <xloc>3824</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Database lookup 2</name>
+    <name>LK - sk_gestao</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1027,13 +1022,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1824</xloc>
+      <xloc>3088</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Database lookup 3</name>
+    <name>LK - sk_tempo</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1075,13 +1070,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2016</xloc>
+      <xloc>3248</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Database lookup 3 2</name>
+    <name>LK - sk_tempo 2</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1123,13 +1118,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2368</xloc>
-      <yloc>320</yloc>
+      <xloc>3968</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Database lookup Geografia</name>
+    <name>LK - sk_geografia</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1177,13 +1172,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1632</xloc>
+      <xloc>2928</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Database lookup Geografia 2</name>
+    <name>LK - sk_geografia 2</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1231,13 +1226,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1984</xloc>
-      <yloc>320</yloc>
+      <xloc>3680</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Filter rows</name>
+    <name>FL - Filtra Público Alvo (Crianças / Adolescentes)</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1247,7 +1242,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Get variables 2</send_true_to>
+    <send_true_to>TR - Data Referência 2</send_true_to>
     <send_false_to/>
     <compare>
       <condition>
@@ -1275,13 +1270,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>320</yloc>
+      <xloc>2096</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Get variables</name>
+    <name>TR - Data Referência</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -1314,13 +1309,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
+      <xloc>2176</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Get variables 2</name>
+    <name>TR - Data Referência 2</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -1353,13 +1348,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
-      <yloc>320</yloc>
+      <xloc>2384</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Insert / update</name>
+    <name>OUT - sfa.fato_unidades (Família Acolhedora)</name>
     <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
@@ -1620,13 +1615,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2560</xloc>
+      <xloc>4176</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Insert / update 2</name>
+    <name>OUT - sfa.fato_unidades (Unidades de Acolhimento)</name>
     <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
@@ -1747,13 +1742,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2880</xloc>
-      <yloc>320</yloc>
+      <xloc>4896</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Modified JavaScript value 2</name>
+    <name>TR - Lógica Customizada (Java)</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -1797,13 +1792,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1440</xloc>
-      <yloc>320</yloc>
+      <xloc>2800</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Replace in string</name>
+    <name>TR - Substitui Strings (Limpeza)</name>
     <type>ReplaceString</type>
     <description/>
     <distribute>Y</distribute>
@@ -1836,13 +1831,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
+      <xloc>1296</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Replace in string 2</name>
+    <name>TR - Substitui Strings (Limpeza) 2</name>
     <type>ReplaceString</type>
     <description/>
     <distribute>Y</distribute>
@@ -1875,13 +1870,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>320</yloc>
+      <xloc>1264</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
+    <name>TR - Seleciona e Renomeia Variáveis Iniciais</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -6905,13 +6900,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
+      <xloc>944</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 2</name>
+    <name>TR - Seleciona e Renomeia e Modifica a Meta-Data de Variáveis Iniciais</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -11792,13 +11787,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>320</yloc>
+      <xloc>848</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 3</name>
+    <name>TR - Altera Meta-Data de Variáveis</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -12056,13 +12051,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>2416</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 3 2</name>
+    <name>TR - Remove Variáveis e Modifica Meta-Data</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -12185,209 +12180,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1632</xloc>
-      <yloc>320</yloc>
+      <xloc>3152</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 4</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>nm_unidade</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ds_natureza</name>
-        <rename/>
-      </field>
-      <field>
-        <name>vl_custo_mensal</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_regionalizado</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_municipios_atendidos</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ano_implantacao</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_acolhidos_atual</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_regulamentado</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_subsidio</name>
-        <rename/>
-      </field>
-      <field>
-        <name>vl_subsidio_mensal</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_apoio_itens_basicos</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_apoio_mobiliario</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_apoio_isencao</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_apoio_outros</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_apoio_nenhum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_perfil_delimitado</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_aceita_irmaos</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_divulg_outdoor</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_divulg_cartaz</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_divulg_midia</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_divulg_eventos</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_divulg_redes</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_divulg_liderancas</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_ch_capacitacao</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_sel_reuniao</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_sel_documental</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_sel_entrevista</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_sel_visita</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_form_grupo</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_form_individual</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_form_rodas</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_acomp_visita</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fl_acomp_psicossocial</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ds_faixa_subsidio</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ds_faixa_implantacao</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ds_faixa_custo</name>
-        <rename/>
-      </field>
-      <field>
-        <name>gestao</name>
-        <rename/>
-      </field>
-      <field>
-        <name>Município</name>
-        <rename/>
-      </field>
-      <field>
-        <name>UF</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ds_endereco</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ds_modalidade</name>
-        <rename/>
-      </field>
-      <field>
-        <name>dt_aux</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1136</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values 4 2</name>
+    <name>TR - Seleciona Variáveis</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -12469,13 +12268,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1248</xloc>
-      <yloc>320</yloc>
+      <xloc>2576</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 5</name>
+    <name>TR - Remove Campos Auxiliares e Modifica Meta-Data</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -12757,13 +12556,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2208</xloc>
+      <xloc>3584</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 5 2</name>
+    <name>TR - Remove Campos Auxiliares e Modifica Meta-Data 2</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -12906,13 +12705,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2560</xloc>
-      <yloc>320</yloc>
+      <xloc>4272</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>String operations</name>
+    <name>TR - Padroniza Textos (Trim)</name>
     <type>StringOperations</type>
     <description/>
     <distribute>Y</distribute>
@@ -12972,13 +12771,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1424</xloc>
+      <xloc>2704</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>String operations 2</name>
+    <name>TR - Padroniza Textos (Trim) 3</name>
     <type>StringOperations</type>
     <description/>
     <distribute>Y</distribute>
@@ -13038,13 +12837,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1776</xloc>
-      <yloc>320</yloc>
+      <xloc>3472</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>If field value is null</name>
+    <name>TR - Trata Nulos</name>
     <type>IfNull</type>
     <description/>
     <distribute>Y</distribute>
@@ -13096,13 +12895,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2384</xloc>
+      <xloc>3904</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>If field value is null 2</name>
+    <name>TR - Trata Nulos 2</name>
     <type>IfNull</type>
     <description/>
     <distribute>Y</distribute>
@@ -13154,13 +12953,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2720</xloc>
-      <yloc>320</yloc>
+      <xloc>4576</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Filter rows 2</name>
+    <name>FL - Filtra Entrada de Linhas Nulas</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -13170,7 +12969,7 @@ if (data_implantacao != null) {
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Select values</send_true_to>
+    <send_true_to>TR - Seleciona e Renomeia Variáveis Iniciais</send_true_to>
     <send_false_to/>
     <compare>
       <condition>
@@ -13189,13 +12988,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
+      <xloc>528</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Filter rows 2 2</name>
+    <name>FL - Filtra Entrada de Linhas Nulas 2</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -13205,7 +13004,7 @@ if (data_implantacao != null) {
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Select values 2</send_true_to>
+    <send_true_to>TR - Seleciona e Renomeia e Modifica a Meta-Data de Variáveis Iniciais</send_true_to>
     <send_false_to/>
     <compare>
       <condition>
@@ -13224,13 +13023,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>320</yloc>
+      <xloc>416</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Input Dados Gerais</name>
+    <name>IN - Dados Gerais (Família Acolhedora)</name>
     <type>TextFileInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -24279,13 +24078,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
+      <xloc>152</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Input Unidades</name>
+    <name>IN - Unidades Acolhimento</name>
     <type>TextFileInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -34824,13 +34623,13 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>64</xloc>
-      <yloc>320</yloc>
+      <xloc>144</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>String operations 3</name>
+    <name>TR - Padroniza Textos (Trim) 2</name>
     <type>StringOperations</type>
     <description/>
     <distribute>Y</distribute>
@@ -34864,8 +34663,8 @@ if (data_implantacao != null) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>816</xloc>
-      <yloc>320</yloc>
+      <xloc>1760</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

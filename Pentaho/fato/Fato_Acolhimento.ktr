@@ -492,58 +492,58 @@
   </connection>
   <order>
     <hop>
-      <from>Text file input</from>
-      <to>Filter rows</to>
+      <from>IN - Dados Gerais</from>
+      <to>FL - Filtra Entrada de Linhas Nulas</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows</from>
-      <to>Select values</to>
+      <from>FL - Filtra Entrada de Linhas Nulas</from>
+      <to>TR - Seleciona e Renomeia Variáveis</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values</from>
-      <to>Get variables</to>
+      <from>TR - Seleciona e Renomeia Variáveis</from>
+      <to>TR - Data de Referência</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get variables</from>
-      <to>String operations</to>
+      <from>TR - Data de Referência</from>
+      <to>TR - Padroniza Textos (Trim)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>String operations</from>
-      <to>Database lookup</to>
+      <from>TR - Padroniza Textos (Trim)</from>
+      <to>LK - sk_geografia</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database lookup</from>
-      <to>Database lookup 2</to>
+      <from>LK - sk_geografia</from>
+      <to>LK - sk_tempo</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database lookup 2</from>
-      <to>Database lookup 3</to>
+      <from>LK - sk_tempo</from>
+      <to>LK - sk_gestao</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Database lookup 3</from>
-      <to>Select values 2</to>
+      <from>LK - sk_gestao</from>
+      <to>TR - Remove Campos Auxiliares</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 2</from>
-      <to>If field value is null</to>
+      <from>TR - Remove Campos Auxiliares</from>
+      <to>TR - Trata Nulos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>If field value is null</from>
-      <to>Insert / update</to>
+      <from>TR - Trata Nulos</from>
+      <to>OUT - sfa.fato_acolhimento</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Text file input</name>
+    <name>IN - Dados Gerais</name>
     <type>TextFileInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -11592,13 +11592,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
+      <xloc>96</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
+    <name>TR - Seleciona e Renomeia Variáveis</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -16509,13 +16509,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
+      <xloc>608</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Filter rows</name>
+    <name>FL - Filtra Entrada de Linhas Nulas</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -16525,7 +16525,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Select values</send_true_to>
+    <send_true_to>TR - Seleciona e Renomeia Variáveis</send_true_to>
     <send_false_to/>
     <compare>
       <condition>
@@ -16544,13 +16544,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
+      <xloc>320</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Get variables</name>
+    <name>TR - Data de Referência</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -16583,13 +16583,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>864</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>String operations</name>
+    <name>TR - Padroniza Textos (Trim)</name>
     <type>StringOperations</type>
     <description/>
     <distribute>Y</distribute>
@@ -16649,13 +16649,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>816</xloc>
+      <xloc>1088</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Database lookup</name>
+    <name>LK - sk_geografia</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -16703,13 +16703,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
+      <xloc>1328</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Database lookup 2</name>
+    <name>LK - sk_tempo</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -16751,13 +16751,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1152</xloc>
+      <xloc>1504</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Database lookup 3</name>
+    <name>LK - sk_gestao</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -16799,13 +16799,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1360</xloc>
+      <xloc>1664</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 2</name>
+    <name>TR - Remove Campos Auxiliares</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -17159,13 +17159,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1520</xloc>
+      <xloc>1888</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Insert / update</name>
+    <name>OUT - sfa.fato_acolhimento</name>
     <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
@@ -17589,13 +17589,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1840</xloc>
+      <xloc>2336</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>If field value is null</name>
+    <name>TR - Trata Nulos</name>
     <type>IfNull</type>
     <description/>
     <distribute>Y</distribute>
@@ -17647,7 +17647,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1680</xloc>
+      <xloc>2128</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
