@@ -2,7 +2,6 @@ create or replace view sfa.vw_fato_acolhimento as select
     -- 1. Métricas Gerais de Acolhimento
     fa.nu_acolhidos_atual,
     fa.nu_acolhidos_12m,
-    fa.nu_acolhidos_total,
     
     -- 2. Métricas de Faixa Etária e Sexo (Masculino)
     fa.nu_masc_0a2,
@@ -95,6 +94,8 @@ create or replace view sfa.vw_fato_acolhimento as select
     t.dt_referencia,
     
     -- 11. Atributos da Dimensão Geografia
+    g.cod_ibge,
+    g.nm_uf,
     g.nm_municipio,
     g.sg_uf,
     g.nm_regiao,

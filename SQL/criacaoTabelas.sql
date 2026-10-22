@@ -114,7 +114,6 @@ create table sfa.fato_acolhimento (
     nu_fem_16a17 int,
 	nu_fem_18mais int,
     nu_fem_total int,
-    nu_acolhidos_total int,
 	nu_orig_outro_mun int,
     nu_orig_outro_est int,
     nu_orig_outro_pais int,
