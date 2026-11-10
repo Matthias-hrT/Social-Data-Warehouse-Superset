@@ -10,6 +10,8 @@ create table sfa.dim_geografia (
     nm_municipio varchar(150),
     sg_uf varchar(2),
     nm_regiao varchar(20),
+	latitude float(8),
+	longitude float(8),
     ds_porte_municipio varchar(50),
     -- Campos de controle gerados pelo Pentaho
     version int,

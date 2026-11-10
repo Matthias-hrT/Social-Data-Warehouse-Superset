@@ -12,6 +12,61 @@
   <modified_date>2026/09/04 10:26:50.788</modified_date>
   <parameters>
     </parameters>
+  <connection>
+    <name>Sistema Familia Acolhedora</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>tcc-1</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79a679cc93bbdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_POSTGRESQL.stringtype</code>
+        <attribute>unspecified</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5432</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <slaveservers>
     </slaveservers>
   <job-log-table>
@@ -466,7 +521,7 @@
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>Job</name>
+      <name>Job Fatos</name>
       <description/>
       <type>JOB</type>
       <attributes/>
@@ -555,6 +610,36 @@
       <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
+    <entry>
+      <name>SQL</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql>REFRESH MATERIALIZED VIEW sfa.vw_fato_unidades;
+REFRESH MATERIALIZED VIEW sfa.vw_fato_acolhimento;
+REFRESH MATERIALIZED VIEW sfa.vw_fato_familias;
+REFRESH MATERIALIZED VIEW sfa.vw_fato_equipe;
+REFRESH MATERIALIZED VIEW sfa.vw_fato_acolhimento_raca;
+REFRESH MATERIALIZED VIEW sfa.vw_fato_acolhimento_idade;
+REFRESH MATERIALIZED VIEW sfa.vw_fato_acolhimento_saida;
+REFRESH MATERIALIZED VIEW sfa.vw_fato_acolhimento_readmissao;
+REFRESH MATERIALIZED VIEW sfa.vw_fato_acolhimento_motivo;
+REFRESH MATERIALIZED VIEW sfa.vw_fato_acolhimento_condicao;
+REFRESH MATERIALIZED VIEW sfa.vw_fato_acolhimento_tempo;
+REFRESH MATERIALIZED VIEW sfa.vw_fato_unidades_divulgacao;
+</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Sistema Familia Acolhedora</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>992</xloc>
+      <yloc>192</yloc>
+      <attributes_kjc/>
+    </entry>
   </entries>
   <hops>
     <hop>
@@ -595,7 +680,7 @@
     </hop>
     <hop>
       <from>Dim_Gestao</from>
-      <to>Job</to>
+      <to>Job Fatos</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -603,8 +688,17 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Job</from>
+      <from>Job Fatos</from>
       <to>Move files</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Move files</from>
+      <to>SQL</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

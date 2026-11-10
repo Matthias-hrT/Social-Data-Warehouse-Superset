@@ -1,4 +1,11 @@
-create or replace view sfa.vw_fato_acolhimento as select 
+-- 1. Cria a View Materializada Geral
+CREATE MATERIALIZED VIEW sfa.vw_fato_acolhimento AS SELECT 
+    -- 0. Chaves Estruturais
+    fa.pk_acolhimento,
+    fa.sk_tempo,
+    fa.sk_geografia,
+    fa.sk_gestao,
+
     -- 1. Métricas Gerais de Acolhimento
     fa.nu_acolhidos_atual,
     fa.nu_acolhidos_12m,
@@ -90,7 +97,7 @@ create or replace view sfa.vw_fato_acolhimento as select
     fa.nu_pbf,
     fa.nu_baixa_renda,
 
-	 -- 10. Atributos da Dimensão Tempo
+    -- 10. Atributos da Dimensão Tempo
     t.dt_referencia,
     
     -- 11. Atributos da Dimensão Geografia
@@ -100,11 +107,19 @@ create or replace view sfa.vw_fato_acolhimento as select
     g.sg_uf,
     g.nm_regiao,
     g.ds_porte_municipio,
+	g.latitude,
+	g.longitude,
     
     -- 12. Atributos da Dimensão Gestão
     ges.ds_tipo_gestao
 
-from sfa.fato_acolhimento fa
-inner join sfa.dim_tempo t on fa.sk_tempo = t.sk_tempo
-inner join sfa.dim_geografia g on fa.sk_geografia = g.sk_geografia
-inner join sfa.dim_gestao ges on fa.sk_gestao = ges.sk_gestao;
+FROM sfa.fato_acolhimento fa
+INNER JOIN sfa.dim_tempo t ON fa.sk_tempo = t.sk_tempo
+INNER JOIN sfa.dim_geografia g ON fa.sk_geografia = g.sk_geografia
+INNER JOIN sfa.dim_gestao ges ON fa.sk_gestao = ges.sk_gestao;
+
+-- 3. Criação dos Índices Físicos (Performance do Superset)
+CREATE UNIQUE INDEX idx_vw_fa_pk ON sfa.vw_fato_acolhimento (pk_acolhimento);
+CREATE INDEX idx_vw_fa_sk_t ON sfa.vw_fato_acolhimento (sk_tempo);
+CREATE INDEX idx_vw_fa_sk_g ON sfa.vw_fato_acolhimento (sk_geografia);
+CREATE INDEX idx_vw_fa_sk_ges ON sfa.vw_fato_acolhimento (sk_gestao);
