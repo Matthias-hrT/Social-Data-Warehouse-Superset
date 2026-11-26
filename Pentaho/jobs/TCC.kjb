@@ -438,7 +438,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
+      <xloc>608</xloc>
       <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
@@ -553,7 +553,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>720</xloc>
+      <xloc>976</xloc>
       <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
@@ -606,12 +606,12 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>864</xloc>
+      <xloc>1120</xloc>
       <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>SQL</name>
+      <name>SQL - Refresh Views</name>
       <description/>
       <type>SQL</type>
       <attributes/>
@@ -636,7 +636,38 @@ REFRESH MATERIALIZED VIEW sfa.vw_fato_unidades_divulgacao;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>992</xloc>
+      <xloc>1296</xloc>
+      <yloc>192</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>SQL - Unknown Member</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql>UPDATE sfa.dim_geografia
+SET cod_ibge = '0000000',
+    nm_uf = 'Não Informado',
+    nm_municipio = 'Não Informado',
+    sg_uf = 'NI',
+    nm_regiao = 'Não Informado',
+	latitude = 0,
+	longitude = 0
+WHERE sk_geografia = 0;
+
+UPDATE sfa.dim_gestao
+SET ds_tipo_gestao = 'Não Informado'
+WHERE sk_gestao = 0;
+</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Sistema Familia Acolhedora</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>800</xloc>
       <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
@@ -670,24 +701,6 @@ REFRESH MATERIALIZED VIEW sfa.vw_fato_unidades_divulgacao;
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Dim_Geografia</from>
-      <to>Dim_Gestao</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Dim_Gestao</from>
-      <to>Job Fatos</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Job Fatos</from>
       <to>Move files</to>
       <from_nr>0</from_nr>
@@ -698,7 +711,34 @@ REFRESH MATERIALIZED VIEW sfa.vw_fato_unidades_divulgacao;
     </hop>
     <hop>
       <from>Move files</from>
-      <to>SQL</to>
+      <to>SQL - Refresh Views</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Dim_Geografia</from>
+      <to>Dim_Gestao</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Dim_Gestao</from>
+      <to>SQL - Unknown Member</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL - Unknown Member</from>
+      <to>Job Fatos</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

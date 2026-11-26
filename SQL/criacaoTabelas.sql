@@ -12,7 +12,6 @@ create table sfa.dim_geografia (
     nm_regiao varchar(20),
 	latitude float(8),
 	longitude float(8),
-    ds_porte_municipio varchar(50),
     -- Campos de controle gerados pelo Pentaho
     version int,
     date_from timestamp,
@@ -61,9 +60,6 @@ create table sfa.fato_unidades (
     vl_subsidio_mensal numeric(12,2),
     fl_perfil_delimitado varchar(100),
     fl_aceita_irmaos varchar(50),
-    ds_faixa_implantacao varchar(50),
-    ds_faixa_subsidio varchar(50),
-    ds_faixa_custo varchar(50),
     
     -- Apoios Nao Financeiros
     fl_apoio_itens_basicos varchar(10),

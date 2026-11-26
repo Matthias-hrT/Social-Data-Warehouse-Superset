@@ -27,9 +27,6 @@ SELECT
     fu.vl_subsidio_mensal,
     fu.fl_perfil_delimitado,
     fu.fl_aceita_irmaos,
-    fu.ds_faixa_implantacao,
-    fu.ds_faixa_subsidio,
-    fu.ds_faixa_custo,
 
     -- 4. Apoios Não Financeiros
     fu.fl_apoio_itens_basicos,
@@ -64,7 +61,6 @@ SELECT
     g.nm_municipio,
     g.sg_uf,
     g.nm_regiao,
-    g.ds_porte_municipio,
 	g.latitude,
 	g.longitude,
 

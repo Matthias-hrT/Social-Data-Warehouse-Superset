@@ -106,7 +106,6 @@ CREATE MATERIALIZED VIEW sfa.vw_fato_acolhimento AS SELECT
     g.nm_municipio,
     g.sg_uf,
     g.nm_regiao,
-    g.ds_porte_municipio,
 	g.latitude,
 	g.longitude,
     
