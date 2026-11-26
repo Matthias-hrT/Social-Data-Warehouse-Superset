@@ -1,107 +1,309 @@
--- 1. Verificar FKs nulas e uso do Unknown Member (SK = 0) em fato_unidades
+-- ============================================================
+-- 1. Verificação de chaves estrangeiras e utilização do
+--    Unknown Member (SK = 0) na tabela fato_unidades
+-- ============================================================
 SELECT
-    COUNT(*) AS total_registros,
-    COUNT(*) FILTER (WHERE sk_geografia IS NULL OR sk_tempo IS NULL OR sk_gestao IS NULL) AS fks_nulas,
-    COUNT(*) FILTER (WHERE sk_geografia = 0) AS sk_geo_zero,
-    COUNT(*) FILTER (WHERE sk_gestao = 0) AS sk_gestao_zero
-FROM sfa.fato_unidades;
+	COUNT(*) AS TOTAL_REGISTROS,
+	COUNT(*) FILTER (
+		WHERE
+			SK_GEOGRAFIA IS NULL
+			OR SK_TEMPO IS NULL
+			OR SK_GESTAO IS NULL
+	) AS FKS_NULAS,
+	COUNT(*) FILTER (
+		WHERE
+			SK_GEOGRAFIA = 0
+	) AS SK_GEO_ZERO,
+	COUNT(*) FILTER (
+		WHERE
+			SK_GESTAO = 0
+	) AS SK_GESTAO_ZERO
+FROM
+	SFA.FATO_UNIDADES;
 
--- 2. Indicadores representativos para comparar com o Superset
-SELECT COUNT(*) AS total_unidades FROM sfa.fato_unidades;
-SELECT SUM(nu_acolhidos_atual) AS total_acolhidos FROM sfa.fato_acolhimento WHERE nu_acolhidos_atual >= 0;
-SELECT COUNT(*) AS total_familias FROM sfa.fato_familias;
-
--- 3. Contagem geral e integridade referencial de todas as tabelas do DW
-SELECT 'dim_geografia' AS tabela, COUNT(*) AS total, 0 AS fks_nulas, 0 AS sk_geo_zero, 0 AS sk_gestao_zero FROM sfa.dim_geografia
-UNION ALL
-SELECT 'dim_gestao', COUNT(*), 0, 0, 0 FROM sfa.dim_gestao
-UNION ALL
-SELECT 'dim_tempo', COUNT(*), 0, 0, 0 FROM sfa.dim_tempo
-UNION ALL
-SELECT 'fato_unidades', COUNT(*),
-       COUNT(*) FILTER (WHERE sk_geografia IS NULL OR sk_tempo IS NULL OR sk_gestao IS NULL),
-       COUNT(*) FILTER (WHERE sk_geografia = 0),
-       COUNT(*) FILTER (WHERE sk_gestao = 0)
-FROM sfa.fato_unidades
-UNION ALL
-SELECT 'fato_acolhimento', COUNT(*),
-       COUNT(*) FILTER (WHERE sk_geografia IS NULL OR sk_tempo IS NULL OR sk_gestao IS NULL),
-       COUNT(*) FILTER (WHERE sk_geografia = 0),
-       COUNT(*) FILTER (WHERE sk_gestao = 0)
-FROM sfa.fato_acolhimento
-UNION ALL
-SELECT 'fato_equipe', COUNT(*),
-       COUNT(*) FILTER (WHERE sk_geografia IS NULL OR sk_tempo IS NULL OR sk_gestao IS NULL),
-       COUNT(*) FILTER (WHERE sk_geografia = 0),
-       COUNT(*) FILTER (WHERE sk_gestao = 0)
-FROM sfa.fato_equipe
-UNION ALL
-SELECT 'fato_familias', COUNT(*),
-       COUNT(*) FILTER (WHERE sk_geografia IS NULL OR sk_tempo IS NULL OR sk_gestao IS NULL),
-       COUNT(*) FILTER (WHERE sk_geografia = 0),
-       COUNT(*) FILTER (WHERE sk_gestao = 0)
-FROM sfa.fato_familias;
-
--- 4. Auditoria de ausências (-1) nas principais métricas numéricas de fato_unidades
+-- ============================================================
+-- 2. Apuração de indicadores representativos para conferência
+--    dos resultados apresentados nos painéis do Apache Superset
+-- ============================================================
 SELECT
-    'vl_custo_mensal' AS atributo,
-    COUNT(*) FILTER (WHERE vl_custo_mensal = -1) AS qtd_menos_um,
-    COUNT(*) FILTER (WHERE vl_custo_mensal >= 0) AS qtd_validos
-FROM sfa.fato_unidades
-UNION ALL
-SELECT
-    'vl_subsidio_mensal',
-    COUNT(*) FILTER (WHERE vl_subsidio_mensal = -1),
-    COUNT(*) FILTER (WHERE vl_subsidio_mensal >= 0)
-FROM sfa.fato_unidades
-UNION ALL
-SELECT
-    'nu_capacidade',
-    COUNT(*) FILTER (WHERE nu_capacidade = -1),
-    COUNT(*) FILTER (WHERE nu_capacidade >= 0)
-FROM sfa.fato_unidades
-UNION ALL
-SELECT
-    'nu_acolhidos_atual (unidades)',
-    COUNT(*) FILTER (WHERE nu_acolhidos_atual = -1),
-    COUNT(*) FILTER (WHERE nu_acolhidos_atual >= 0)
-FROM sfa.fato_unidades
-UNION ALL
--- 5. Auditoria de ausências (-1) nas principais métricas de fato_acolhimento
-SELECT
-    'nu_acolhidos_atual (acolhimento)',
-    COUNT(*) FILTER (WHERE nu_acolhidos_atual = -1),
-    COUNT(*) FILTER (WHERE nu_acolhidos_atual >= 0)
-FROM sfa.fato_acolhimento
-UNION ALL
-SELECT
-    'nu_acolhidos_12m',
-    COUNT(*) FILTER (WHERE nu_acolhidos_12m = -1),
-    COUNT(*) FILTER (WHERE nu_acolhidos_12m >= 0)
-FROM sfa.fato_acolhimento;
-
--- 6. Totais e auditoria da fato_unidades (Quadros 4, 5, 6 e Seção 4.6.1)
-SELECT
-    COUNT(*) AS total_unidades,
-    COUNT(*) FILTER (WHERE vl_custo_mensal = -1) AS custo_menos1,
-    COUNT(*) FILTER (WHERE vl_custo_mensal >= 0) AS custo_valido,
-    SUM(NULLIF(vl_custo_mensal, -1)) AS custo_mensal_total,
-    COUNT(*) FILTER (WHERE nu_capacidade = -1) AS cap_menos1,
-    COUNT(*) FILTER (WHERE nu_capacidade >= 0) AS cap_valido,
-    SUM(NULLIF(nu_capacidade, -1)) AS capacidade_total,
-    SUM(CASE WHEN ds_modalidade <> 'Família Acolhedora' THEN NULLIF(nu_acolhidos_atual, -1) ELSE 0 END) AS acolhidos_institucional
-FROM sfa.fato_unidades;
-
--- 7. Distribuição por modalidade (Seção 4.6.1)
-SELECT ds_modalidade, COUNT(*) AS qtd
-FROM sfa.fato_unidades
-GROUP BY ds_modalidade;
-
--- 8. Novo total da dim_geografia (Quadro 4)
-SELECT COUNT(*) AS total_geografia FROM sfa.dim_geografia;
+	COUNT(*) AS TOTAL_UNIDADES
+FROM
+	SFA.FATO_UNIDADES;
 
 SELECT
-    SUM(NULLIF(nu_readm_fam_origem, -1))  AS fam_origem,
-    SUM(NULLIF(nu_readm_fam_extensa, -1)) AS fam_extensa,
-    SUM(NULLIF(nu_readm_adocao, -1))      AS adocao
-FROM sfa.fato_acolhimento;
+	SUM(NU_ACOLHIDOS_ATUAL) AS TOTAL_ACOLHIDOS
+FROM
+	SFA.FATO_ACOLHIMENTO
+WHERE
+	NU_ACOLHIDOS_ATUAL >= 0;
+
+SELECT
+	COUNT(*) AS TOTAL_FAMILIAS
+FROM
+	SFA.FATO_FAMILIAS;
+
+-- ============================================================
+-- 3. Levantamento da quantidade de registros e diagnóstico
+--    do preenchimento das chaves estrangeiras nas tabelas
+--    dimensionais e de fatos do Data Warehouse
+-- ============================================================
+SELECT
+	'dim_geografia' AS TABELA,
+	COUNT(*) AS TOTAL,
+	0 AS FKS_NULAS,
+	0 AS SK_GEO_ZERO,
+	0 AS SK_GESTAO_ZERO
+FROM
+	SFA.DIM_GEOGRAFIA
+UNION ALL
+SELECT
+	'dim_gestao',
+	COUNT(*),
+	0,
+	0,
+	0
+FROM
+	SFA.DIM_GESTAO
+UNION ALL
+SELECT
+	'dim_tempo',
+	COUNT(*),
+	0,
+	0,
+	0
+FROM
+	SFA.DIM_TEMPO
+UNION ALL
+SELECT
+	'fato_unidades',
+	COUNT(*),
+	COUNT(*) FILTER (
+		WHERE
+			SK_GEOGRAFIA IS NULL
+			OR SK_TEMPO IS NULL
+			OR SK_GESTAO IS NULL
+	),
+	COUNT(*) FILTER (
+		WHERE
+			SK_GEOGRAFIA = 0
+	),
+	COUNT(*) FILTER (
+		WHERE
+			SK_GESTAO = 0
+	)
+FROM
+	SFA.FATO_UNIDADES
+UNION ALL
+SELECT
+	'fato_acolhimento',
+	COUNT(*),
+	COUNT(*) FILTER (
+		WHERE
+			SK_GEOGRAFIA IS NULL
+			OR SK_TEMPO IS NULL
+			OR SK_GESTAO IS NULL
+	),
+	COUNT(*) FILTER (
+		WHERE
+			SK_GEOGRAFIA = 0
+	),
+	COUNT(*) FILTER (
+		WHERE
+			SK_GESTAO = 0
+	)
+FROM
+	SFA.FATO_ACOLHIMENTO
+UNION ALL
+SELECT
+	'fato_equipe',
+	COUNT(*),
+	COUNT(*) FILTER (
+		WHERE
+			SK_GEOGRAFIA IS NULL
+			OR SK_TEMPO IS NULL
+			OR SK_GESTAO IS NULL
+	),
+	COUNT(*) FILTER (
+		WHERE
+			SK_GEOGRAFIA = 0
+	),
+	COUNT(*) FILTER (
+		WHERE
+			SK_GESTAO = 0
+	)
+FROM
+	SFA.FATO_EQUIPE
+UNION ALL
+SELECT
+	'fato_familias',
+	COUNT(*),
+	COUNT(*) FILTER (
+		WHERE
+			SK_GEOGRAFIA IS NULL
+			OR SK_TEMPO IS NULL
+			OR SK_GESTAO IS NULL
+	),
+	COUNT(*) FILTER (
+		WHERE
+			SK_GEOGRAFIA = 0
+	),
+	COUNT(*) FILTER (
+		WHERE
+			SK_GESTAO = 0
+	)
+FROM
+	SFA.FATO_FAMILIAS;
+
+-- ============================================================
+-- 4. Auditoria do tratamento de valores ausentes (-1) nas
+--    principais métricas numéricas da tabela fato_unidades
+-- ============================================================
+SELECT
+	'vl_custo_mensal' AS ATRIBUTO,
+	COUNT(*) FILTER (
+		WHERE
+			VL_CUSTO_MENSAL = -1
+	) AS QTD_MENOS_UM,
+	COUNT(*) FILTER (
+		WHERE
+			VL_CUSTO_MENSAL >= 0
+	) AS QTD_VALIDOS
+FROM
+	SFA.FATO_UNIDADES
+UNION ALL
+SELECT
+	'vl_subsidio_mensal',
+	COUNT(*) FILTER (
+		WHERE
+			VL_SUBSIDIO_MENSAL = -1
+	),
+	COUNT(*) FILTER (
+		WHERE
+			VL_SUBSIDIO_MENSAL >= 0
+	)
+FROM
+	SFA.FATO_UNIDADES
+UNION ALL
+SELECT
+	'nu_capacidade',
+	COUNT(*) FILTER (
+		WHERE
+			NU_CAPACIDADE = -1
+	),
+	COUNT(*) FILTER (
+		WHERE
+			NU_CAPACIDADE >= 0
+	)
+FROM
+	SFA.FATO_UNIDADES
+UNION ALL
+SELECT
+	'nu_acolhidos_atual (unidades)',
+	COUNT(*) FILTER (
+		WHERE
+			NU_ACOLHIDOS_ATUAL = -1
+	),
+	COUNT(*) FILTER (
+		WHERE
+			NU_ACOLHIDOS_ATUAL >= 0
+	)
+FROM
+	SFA.FATO_UNIDADES;
+
+-- ============================================================
+-- 5. Auditoria do tratamento de valores ausentes (-1) nas
+--    principais métricas numéricas da tabela fato_acolhimento
+-- ============================================================
+SELECT
+	'nu_acolhidos_atual (acolhimento)',
+	COUNT(*) FILTER (
+		WHERE
+			NU_ACOLHIDOS_ATUAL = -1
+	),
+	COUNT(*) FILTER (
+		WHERE
+			NU_ACOLHIDOS_ATUAL >= 0
+	)
+FROM
+	SFA.FATO_ACOLHIMENTO
+UNION ALL
+SELECT
+	'nu_acolhidos_12m',
+	COUNT(*) FILTER (
+		WHERE
+			NU_ACOLHIDOS_12M = -1
+	),
+	COUNT(*) FILTER (
+		WHERE
+			NU_ACOLHIDOS_12M >= 0
+	)
+FROM
+	SFA.FATO_ACOLHIMENTO;
+
+-- ============================================================
+-- 6. Consolidação dos quantitativos e indicadores da tabela
+--    fato_unidades para conferência dos resultados apresentados
+--    nos Quadros 4, 5 e 6 e na Seção 4.6.1 do trabalho
+-- ============================================================
+SELECT
+	COUNT(*) AS TOTAL_UNIDADES,
+	COUNT(*) FILTER (
+		WHERE
+			VL_CUSTO_MENSAL = -1
+	) AS CUSTO_MENOS1,
+	COUNT(*) FILTER (
+		WHERE
+			VL_CUSTO_MENSAL >= 0
+	) AS CUSTO_VALIDO,
+	SUM(NULLIF(VL_CUSTO_MENSAL, -1)) AS CUSTO_MENSAL_TOTAL,
+	COUNT(*) FILTER (
+		WHERE
+			NU_CAPACIDADE = -1
+	) AS CAP_MENOS1,
+	COUNT(*) FILTER (
+		WHERE
+			NU_CAPACIDADE >= 0
+	) AS CAP_VALIDO,
+	SUM(NULLIF(NU_CAPACIDADE, -1)) AS CAPACIDADE_TOTAL,
+	SUM(
+		CASE
+			WHEN DS_MODALIDADE <> 'Família Acolhedora' THEN NULLIF(NU_ACOLHIDOS_ATUAL, -1)
+			ELSE 0
+		END
+	) AS ACOLHIDOS_INSTITUCIONAL
+FROM
+	SFA.FATO_UNIDADES;
+
+-- ============================================================
+-- 7. Distribuição quantitativa dos registros da fato_unidades
+--    de acordo com a modalidade de acolhimento
+-- ============================================================
+SELECT
+	DS_MODALIDADE,
+	COUNT(*) AS QTD
+FROM
+	SFA.FATO_UNIDADES
+GROUP BY
+	DS_MODALIDADE;
+
+-- ============================================================
+-- 8. Conferência do quantitativo de registros da dimensão
+--    geográfica para atualização dos resultados apresentados
+--    no Quadro 4
+-- ============================================================
+SELECT
+	COUNT(*) AS TOTAL_GEOGRAFIA
+FROM
+	SFA.DIM_GEOGRAFIA;
+
+-- ============================================================
+-- 9. Apuração dos quantitativos de readmissões por modalidade
+--    de encaminhamento, conforme os atributos disponíveis
+--    na tabela fato_acolhimento
+-- ============================================================
+SELECT
+	SUM(NULLIF(NU_READM_FAM_ORIGEM, -1)) AS FAM_ORIGEM,
+	SUM(NULLIF(NU_READM_FAM_EXTENSA, -1)) AS FAM_EXTENSA,
+	SUM(NULLIF(NU_READM_ADOCAO, -1)) AS ADOCAO
+FROM
+	SFA.FATO_ACOLHIMENTO;

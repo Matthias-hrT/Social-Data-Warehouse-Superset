@@ -1,5 +1,5 @@
 -- 1. Criação da View Materializada Temática
-CREATE MATERIALIZED VIEW sfa.vw_fato_acolhimento_raca AS SELECT 
+create materialized view sfa.vw_fato_acolhimento_raca as select 
     -- 0. Chaves Estruturais
     fa.pk_acolhimento,
     fa.sk_tempo,
@@ -25,26 +25,26 @@ CREATE MATERIALIZED VIEW sfa.vw_fato_acolhimento_raca AS SELECT
     -- 4. Atributos da Dimensão Gestão
     ges.ds_tipo_gestao
 
-FROM sfa.fato_acolhimento fa
-INNER JOIN sfa.dim_tempo t ON fa.sk_tempo = t.sk_tempo
-INNER JOIN sfa.dim_geografia g ON fa.sk_geografia = g.sk_geografia
-INNER JOIN sfa.dim_gestao ges ON fa.sk_gestao = ges.sk_gestao
+from sfa.fato_acolhimento fa
+inner join sfa.dim_tempo t on fa.sk_tempo = t.sk_tempo
+inner join sfa.dim_geografia g on fa.sk_geografia = g.sk_geografia
+inner join sfa.dim_gestao ges on fa.sk_gestao = ges.sk_gestao
 -- O Motor do Unpivot: Multiplica as linhas e empilha os dados
-CROSS JOIN LATERAL (
-    VALUES 
+cross join lateral (
+    values 
         ('Preta', fa.nu_raca_preta),
         ('Parda', fa.nu_raca_parda),
         ('Branca', fa.nu_raca_branca),
         ('Amarela', fa.nu_raca_amarela),
         ('Indígena', fa.nu_raca_indigena)
-) AS raca(raca_cor, quantidade)
+) as raca(raca_cor, quantidade)
 -- Filtro de otimização: remove linhas zeradas para poupar espaço e processamento
-WHERE raca.quantidade > 0;
+where raca.quantidade > 0;
 
 -- 3. Criação dos Índices Físicos
 -- A chave única agora é composta (PK + Raça), pois o unpivot gera múltiplas linhas por PK original
-CREATE UNIQUE INDEX idx_vw_fa_raca_pk ON sfa.vw_fato_acolhimento_raca (pk_acolhimento, raca_cor);
-CREATE INDEX idx_vw_fa_raca_cor ON sfa.vw_fato_acolhimento_raca (raca_cor);
-CREATE INDEX idx_vw_fa_raca_sk_t ON sfa.vw_fato_acolhimento_raca (sk_tempo);
-CREATE INDEX idx_vw_fa_raca_sk_g ON sfa.vw_fato_acolhimento_raca (sk_geografia);
-CREATE INDEX idx_vw_fa_raca_sk_ges ON sfa.vw_fato_acolhimento_raca (sk_gestao);
+create unique index idx_vw_fa_raca_pk on sfa.vw_fato_acolhimento_raca (pk_acolhimento, raca_cor);
+create index idx_vw_fa_raca_cor on sfa.vw_fato_acolhimento_raca (raca_cor);
+create index idx_vw_fa_raca_sk_t on sfa.vw_fato_acolhimento_raca (sk_tempo);
+create index idx_vw_fa_raca_sk_g on sfa.vw_fato_acolhimento_raca (sk_geografia);
+create index idx_vw_fa_raca_sk_ges on sfa.vw_fato_acolhimento_raca (sk_gestao);

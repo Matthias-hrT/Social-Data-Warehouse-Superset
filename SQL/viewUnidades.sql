@@ -1,6 +1,5 @@
 -- 1. Cria a View Materializada
-CREATE MATERIALIZED VIEW sfa.vw_fato_unidades AS 
-SELECT 
+create materialized veiw sfa.vw_fato_unidades as select
     -- 0. Chaves Estruturais
     fu.pk_unidade,
     fu.sk_geografia,
@@ -70,13 +69,13 @@ SELECT
     -- 9. Atributos da Dimensão Gestão
     ges.ds_tipo_gestao
 
-FROM sfa.fato_unidades fu
-INNER JOIN sfa.dim_geografia g ON fu.sk_geografia = g.sk_geografia
-INNER JOIN sfa.dim_tempo t ON fu.sk_tempo = t.sk_tempo
-INNER JOIN sfa.dim_gestao ges ON fu.sk_gestao = ges.sk_gestao;
+from sfa.fato_unidades fu
+inner join sfa.dim_geografia g on fu.sk_geografia = g.sk_geografia
+inner join sfa.dim_tempo t on fu.sk_tempo = t.sk_tempo
+inner join sfa.dim_gestao ges on fu.sk_gestao = ges.sk_gestao;
 
 -- 3. Criação dos Índices (Crucial para a performance no BI)
-CREATE UNIQUE INDEX idx_vw_fu_pk ON sfa.vw_fato_unidades (pk_unidade);
-CREATE INDEX idx_vw_fu_sk_g ON sfa.vw_fato_unidades (sk_geografia);
-CREATE INDEX idx_vw_fu_sk_t ON sfa.vw_fato_unidades (sk_tempo);
-CREATE INDEX idx_vw_fu_sk_ges ON sfa.vw_fato_unidades (sk_gestao);
+create unique index idx_vw_fu_pk on sfa.vw_fato_unidades (pk_unidade);
+create index idx_vw_fu_sk_g on sfa.vw_fato_unidades (sk_geografia);
+create index idx_vw_fu_sk_t on sfa.vw_fato_unidades (sk_tempo);
+create index idx_vw_fu_sk_ges on sfa.vw_fato_unidades (sk_gestao);

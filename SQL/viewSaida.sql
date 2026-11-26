@@ -1,5 +1,5 @@
 -- 1. Criação da View Materializada Temática
-CREATE MATERIALIZED VIEW sfa.vw_fato_acolhimento_saida AS SELECT 
+create materialized view sfa.vw_fato_acolhimento_saida as select 
     -- 0. Chaves Estruturais
     fa.pk_acolhimento, -- Ajuste para a PK real da sua tabela fato
     fa.sk_tempo,
@@ -25,25 +25,25 @@ CREATE MATERIALIZED VIEW sfa.vw_fato_acolhimento_saida AS SELECT
     -- 4. Atributos da Dimensão Gestão
     ges.ds_tipo_gestao
 
-FROM sfa.fato_acolhimento fa
-INNER JOIN sfa.dim_tempo t ON fa.sk_tempo = t.sk_tempo
-INNER JOIN sfa.dim_geografia g ON fa.sk_geografia = g.sk_geografia
-INNER JOIN sfa.dim_gestao ges ON fa.sk_gestao = ges.sk_gestao
+from sfa.fato_acolhimento fa
+inner join sfa.dim_tempo t on fa.sk_tempo = t.sk_tempo
+inner join sfa.dim_geografia g on fa.sk_geografia = g.sk_geografia
+inner join sfa.dim_gestao ges on fa.sk_gestao = ges.sk_gestao
 -- O Motor do Unpivot: Empilha as colunas numéricas de saída
-CROSS JOIN LATERAL (
-    VALUES 
+cross join lateral (
+    values 
         ('Reintegração à família de origem', fa.nu_dest_fam_origem),
         ('Família extensa', fa.nu_dest_fam_extensa),
         ('Adoção', fa.nu_dest_adocao),
         ('Maioridade', fa.nu_dest_deslig_18),
         ('Transferência para outra unidade', fa.nu_dest_outra_unid)
-) AS saida(destino_institucional, quantidade)
+) as saida(destino_institucional, quantidade)
 -- Filtro de otimização: mantém apenas os registros onde a quantidade é válida (maior que zero)
-WHERE saida.quantidade > 0;
+where saida.quantidade > 0;
 
 -- 2. Criação dos Índices Físicos
-CREATE UNIQUE INDEX idx_vw_fa_saida_pk ON sfa.vw_fato_acolhimento_saida (pk_acolhimento, destino_institucional);
-CREATE INDEX idx_vw_fa_saida_dest ON sfa.vw_fato_acolhimento_saida (destino_institucional);
-CREATE INDEX idx_vw_fa_saida_skt ON sfa.vw_fato_acolhimento_saida (sk_tempo);
-CREATE INDEX idx_vw_fa_saida_skg ON sfa.vw_fato_acolhimento_saida (sk_geografia);
+create unique index idx_vw_fa_saida_pk on sfa.vw_fato_acolhimento_saida (pk_acolhimento, destino_institucional);
+create index idx_vw_fa_saida_dest on sfa.vw_fato_acolhimento_saida (destino_institucional);
+create index idx_vw_fa_saida_skt on sfa.vw_fato_acolhimento_saida (sk_tempo);
+create index idx_vw_fa_saida_skg on sfa.vw_fato_acolhimento_saida (sk_geografia);
 create index idx_vw_fa_saida_skges on sfa.vw_fato_acolhimento_saida (sk_gestao);
