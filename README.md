@@ -22,7 +22,7 @@ O objetivo é transformar os microdados do Censo SUAS 2024 (programa Família Ac
 | Camada | Ferramenta | Versão |
 |---|---|---|
 | Banco de dados | PostgreSQL | 18.1 |
-| ETL | Pentaho Data Integration (Kettle) | 9.4 |
+| ETL | Pentaho Data Integration (Kettle), versão legada disponível em [ambientelivre/legacy-pentaho-ce](https://github.com/ambientelivre/legacy-pentaho-ce) | 9.4 |
 | Visualização | Apache Superset (Docker) | 6.1.0 |
 | Cliente SQL | pgAdmin 4 | 9.11 |
 
@@ -55,7 +55,7 @@ Os microdados são do **Censo SUAS 2024**, do Ministério do Desenvolvimento e A
 |---|---|---|
 | `Dados_Gerais.csv`, `RH_Equipe.csv`, `RH_Familia.csv` (programa Família Acolhedora) | Portal de dados abertos do MDS | Sim, em `Planilhas/Processados/` |
 | `Unidade_Acolhimento.csv` (abrigos institucionais e casas-lar) | Cedida diretamente pelo MDS; **não consta no portal de dados abertos** | **Não.** Deve ser solicitada ao MDS |
-| `arquivo_auxiliar_geografia.csv` e `municipios.csv` | Tabela de municípios e códigos IBGE e coordenadas dos municípios (repositório aberto `kelvins/municipios-brasileiros`, a partir de dados do IBGE) | Sim |
+| `arquivo_auxiliar_geografia.csv` e `municipios.csv` | Tabela de municípios e códigos IBGE e coordenadas (latitude e longitude) dos municípios, do repositório aberto [kelvins/municipios-brasileiros](https://github.com/kelvins/municipios-brasileiros), estruturado a partir de dados oficiais do IBGE | Sim |
 
 Os dados tratados são agregados ou descritivos (sem nome, documento ou endereço residencial de pessoas) e tratam-se de dados anonimizados no sentido da LGPD. Detalhes na seção 3.8 do TCC.
 
