@@ -1,4 +1,4 @@
--- 1. Cria a View Materializada
+-- 1. Cria a View Materializada 
 create materialized view sfa.vw_fato_equipe as select
     -- 0. Chaves Estruturais
     fe.pk_equipe,

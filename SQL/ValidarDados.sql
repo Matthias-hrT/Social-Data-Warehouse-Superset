@@ -1,5 +1,5 @@
 -- ============================================================
--- 1. Verificação de chaves estrangeiras e utilização do
+-- 1. Verificação de chaves estrangeiras e utilização do 
 --    Unknown Member (SK = 0) na tabela fato_unidades
 -- ============================================================
 SELECT

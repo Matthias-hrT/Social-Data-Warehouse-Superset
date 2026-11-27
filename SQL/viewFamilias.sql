@@ -1,4 +1,4 @@
--- 1. Cria a View Materializada
+-- 1. Cria a View Materializada 
 create materialized view sfa.vw_fato_familias as select 
     -- 0. Chaves Estruturais
     ff.pk_familia,

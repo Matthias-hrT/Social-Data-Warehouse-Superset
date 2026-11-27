@@ -1,5 +1,5 @@
--- 1. Cria a View Materializada
-create materialized veiw sfa.vw_fato_unidades as select
+-- 1. Cria a View Materializada 
+create materialized view sfa.vw_fato_unidades as select
     -- 0. Chaves Estruturais
     fu.pk_unidade,
     fu.sk_geografia,

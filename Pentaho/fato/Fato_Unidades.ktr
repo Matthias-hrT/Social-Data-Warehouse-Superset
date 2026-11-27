@@ -23737,6 +23737,19 @@ if (data_implantacao != null) {
         <digits/>
         <remove_special_characters>carriage return  &amp; line feed</remove_special_characters>
       </field>
+      <field>
+        <in_stream_name>ds_modalidade</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper/>
+        <padding_type/>
+        <pad_char/>
+        <pad_len/>
+        <init_cap/>
+        <mask_xml/>
+        <digits/>
+        <remove_special_characters>carriage return  &amp; line feed</remove_special_characters>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -23775,6 +23788,19 @@ if (data_implantacao != null) {
         <init_cap>N</init_cap>
         <mask_xml>None</mask_xml>
         <digits>none</digits>
+        <remove_special_characters>carriage return  &amp; line feed</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>ds_modalidade</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper/>
+        <padding_type/>
+        <pad_char/>
+        <pad_len/>
+        <init_cap/>
+        <mask_xml/>
+        <digits/>
         <remove_special_characters>carriage return  &amp; line feed</remove_special_characters>
       </field>
     </fields>

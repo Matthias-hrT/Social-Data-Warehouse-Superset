@@ -1,4 +1,3 @@
-
 -- criar o esquema
 create schema if not exists sfa;
 

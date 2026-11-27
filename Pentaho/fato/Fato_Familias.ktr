@@ -528,11 +528,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>TR - Trata Nulos</from>
-      <to>OUT - sfa.fato_familias</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>IN - RH Familia</from>
       <to>FL - Filtra Entrada de Linhas Nulas</to>
       <enabled>Y</enabled>
@@ -545,6 +540,11 @@
     <hop>
       <from>TR - Corrige as Datas</from>
       <to>TR - Seleciona e Renomeia Variáveis</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TR - Trata Nulos</from>
+      <to>OUT - sfa.fato_familias</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1544,8 +1544,8 @@
     </GUI>
   </step>
   <step>
-    <name>OUT - sfa.fato_familias</name>
-    <type>InsertUpdate</type>
+    <name>TR - Corrige as Datas</name>
+    <type>StringOperations</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1554,87 +1554,21 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Sistema Familia Acolhedora</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>sfa</schema>
-      <table>fato_familias</table>
-      <key>
-        <name>sk_tempo</name>
-        <field>sk_tempo</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>sk_geografia</name>
-        <field>sk_geografia</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>sk_gestao</name>
-        <field>sk_gestao</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>dt_inicio_exercicio</name>
-        <field>dt_inicio_exercicio</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>ds_sexo</name>
-        <rename>ds_sexo</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ds_faixa_etaria</name>
-        <rename>ds_faixa_etaria</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ds_nivel_escolaridade</name>
-        <rename>ds_nivel_escolaridade</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ds_profissao</name>
-        <rename>ds_profissao</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ds_tipo_vinculo</name>
-        <rename>ds_tipo_vinculo</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ds_funcao</name>
-        <rename>ds_funcao</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>dt_inicio_exercicio</name>
-        <rename>dt_inicio_exercicio</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>sk_tempo</name>
-        <rename>sk_tempo</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>sk_geografia</name>
-        <rename>sk_geografia</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>sk_gestao</name>
-        <rename>sk_gestao</rename>
-        <update>N</update>
-      </value>
-    </lookup>
+    <fields>
+      <field>
+        <in_stream_name>q48_14</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper/>
+        <padding_type>left</padding_type>
+        <pad_char>0</pad_char>
+        <pad_len>8</pad_len>
+        <init_cap/>
+        <mask_xml/>
+        <digits/>
+        <remove_special_characters>carriage return  &amp; line feed</remove_special_characters>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1644,7 +1578,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2624</xloc>
+      <xloc>624</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1846,59 +1780,45 @@
     <fields>
       <field>
         <name>ds_sexo</name>
-        <rename/>
       </field>
       <field>
         <name>ds_faixa_etaria</name>
-        <rename/>
       </field>
       <field>
         <name>ds_nivel_escolaridade</name>
-        <rename/>
       </field>
       <field>
         <name>ds_profissao</name>
-        <rename/>
       </field>
       <field>
         <name>ds_tipo_vinculo</name>
-        <rename/>
       </field>
       <field>
         <name>ds_funcao</name>
-        <rename/>
       </field>
       <field>
         <name>dt_inicio_exercicio</name>
-        <rename/>
       </field>
       <field>
         <name>ds_gestao</name>
-        <rename/>
       </field>
       <field>
         <name>Município</name>
-        <rename/>
       </field>
       <field>
         <name>UF</name>
-        <rename/>
       </field>
       <field>
         <name>dt_aux</name>
-        <rename/>
       </field>
       <field>
         <name>sk_tempo</name>
-        <rename/>
       </field>
       <field>
         <name>sk_geografia</name>
-        <rename/>
       </field>
       <field>
         <name>sk_gestao</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <remove>
@@ -1983,7 +1903,6 @@
       </field>
       <field>
         <name>q48_14</name>
-        <rename/>
       </field>
       <field>
         <name>q7</name>
@@ -1991,163 +1910,123 @@
       </field>
       <field>
         <name>Município</name>
-        <rename/>
       </field>
       <field>
         <name>UF</name>
-        <rename/>
       </field>
       <field>
         <name>IBGE7</name>
-        <rename/>
       </field>
       <field>
         <name>N_Identificador</name>
-        <rename/>
       </field>
       <field>
         <name>IBGE</name>
-        <rename/>
       </field>
       <field>
         <name>codigo_UF</name>
-        <rename/>
       </field>
       <field>
         <name>Região</name>
-        <rename/>
       </field>
       <field>
         <name>areaKm2</name>
-        <rename/>
       </field>
       <field>
         <name>Pop_total_2022</name>
-        <rename/>
       </field>
       <field>
         <name>Porte_pop2022</name>
-        <rename/>
       </field>
       <field>
         <name>Q_incompleto</name>
-        <rename/>
       </field>
       <field>
         <name>DataCenso</name>
-        <rename/>
       </field>
       <field>
         <name>DataCenso_2024</name>
-        <rename/>
       </field>
       <field>
         <name>d48_9</name>
-        <rename/>
       </field>
       <field>
         <name>d48_11</name>
-        <rename/>
       </field>
       <field>
         <name>d48_9bin1</name>
-        <rename/>
       </field>
       <field>
         <name>d48_9bin2</name>
-        <rename/>
       </field>
       <field>
         <name>d48_9bin3</name>
-        <rename/>
       </field>
       <field>
         <name>d48_10bin1</name>
-        <rename/>
       </field>
       <field>
         <name>d48_10bin2</name>
-        <rename/>
       </field>
       <field>
         <name>d48_10bin3</name>
-        <rename/>
       </field>
       <field>
         <name>d48_10bin4</name>
-        <rename/>
       </field>
       <field>
         <name>d48_10bin5</name>
-        <rename/>
       </field>
       <field>
         <name>d48_11bin1</name>
-        <rename/>
       </field>
       <field>
         <name>d48_11bin2</name>
-        <rename/>
       </field>
       <field>
         <name>d48_11bin3</name>
-        <rename/>
       </field>
       <field>
         <name>d48_11bin4</name>
-        <rename/>
       </field>
       <field>
         <name>d48_9bin1_sum</name>
-        <rename/>
       </field>
       <field>
         <name>d48_9bin2_sum</name>
-        <rename/>
       </field>
       <field>
         <name>d48_9bin3_sum</name>
-        <rename/>
       </field>
       <field>
         <name>d48_10bin1_sum</name>
-        <rename/>
       </field>
       <field>
         <name>d48_10bin2_sum</name>
-        <rename/>
       </field>
       <field>
         <name>d48_10bin3_sum</name>
-        <rename/>
       </field>
       <field>
         <name>d48_10bin4_sum</name>
-        <rename/>
       </field>
       <field>
         <name>d48_10bin5_sum</name>
-        <rename/>
       </field>
       <field>
         <name>d48_11bin1_sum</name>
-        <rename/>
       </field>
       <field>
         <name>d48_11bin2_sum</name>
-        <rename/>
       </field>
       <field>
         <name>d48_11bin3_sum</name>
-        <rename/>
       </field>
       <field>
         <name>d48_11bin4_sum</name>
-        <rename/>
       </field>
       <field>
         <name>nu_familias_acolhedoras</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <remove>
@@ -2355,8 +2234,8 @@
     </GUI>
   </step>
   <step>
-    <name>TR - Corrige as Datas</name>
-    <type>StringOperations</type>
+    <name>OUT - sfa.fato_familias</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -2365,19 +2244,63 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <connection>Sistema Familia Acolhedora</connection>
+    <schema>sfa</schema>
+    <table>fato_familias</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
       <field>
-        <in_stream_name>q48_14</in_stream_name>
-        <out_stream_name/>
-        <trim_type>both</trim_type>
-        <lower_upper/>
-        <padding_type>left</padding_type>
-        <pad_char>0</pad_char>
-        <pad_len>8</pad_len>
-        <init_cap/>
-        <mask_xml/>
-        <digits/>
-        <remove_special_characters>carriage return  &amp; line feed</remove_special_characters>
+        <column_name>ds_sexo</column_name>
+        <stream_name>ds_sexo</stream_name>
+      </field>
+      <field>
+        <column_name>ds_faixa_etaria</column_name>
+        <stream_name>ds_faixa_etaria</stream_name>
+      </field>
+      <field>
+        <column_name>ds_nivel_escolaridade</column_name>
+        <stream_name>ds_nivel_escolaridade</stream_name>
+      </field>
+      <field>
+        <column_name>ds_profissao</column_name>
+        <stream_name>ds_profissao</stream_name>
+      </field>
+      <field>
+        <column_name>ds_tipo_vinculo</column_name>
+        <stream_name>ds_tipo_vinculo</stream_name>
+      </field>
+      <field>
+        <column_name>ds_funcao</column_name>
+        <stream_name>ds_funcao</stream_name>
+      </field>
+      <field>
+        <column_name>dt_inicio_exercicio</column_name>
+        <stream_name>dt_inicio_exercicio</stream_name>
+      </field>
+      <field>
+        <column_name>sk_tempo</column_name>
+        <stream_name>sk_tempo</stream_name>
+      </field>
+      <field>
+        <column_name>sk_geografia</column_name>
+        <stream_name>sk_geografia</stream_name>
+      </field>
+      <field>
+        <column_name>sk_gestao</column_name>
+        <stream_name>sk_gestao</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -2389,7 +2312,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
+      <xloc>2592</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>

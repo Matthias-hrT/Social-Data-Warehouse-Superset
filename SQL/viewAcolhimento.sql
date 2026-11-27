@@ -6,7 +6,7 @@ create materialized view sfa.vw_fato_acolhimento as select
     fa.sk_geografia,
     fa.sk_gestao,
 
-    -- 1. Métricas Gerais de Acolhimento
+    -- 1. Métricas Gerais de Acolhimento 
     fa.nu_acolhidos_atual,
     fa.nu_acolhidos_12m,
     

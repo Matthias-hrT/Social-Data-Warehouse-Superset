@@ -1,7 +1,7 @@
--- 1. Criação da View Materializada Temática
+-- 1. Criação da View Materializada Temática 
 create materialized view sfa.vw_fato_acolhimento_saida as select 
     -- 0. Chaves Estruturais
-    fa.pk_acolhimento, -- Ajuste para a PK real da sua tabela fato
+    fa.pk_acolhimento,
     fa.sk_tempo,
     fa.sk_geografia,
     fa.sk_gestao,

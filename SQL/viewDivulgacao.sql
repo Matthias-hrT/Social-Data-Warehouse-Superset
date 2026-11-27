@@ -1,4 +1,3 @@
--- 1. Criação da View Materializada Temática
 create materialized view sfa.vw_fato_unidades_divulgacao as select 
     -- 0. Chaves Estruturais
     fu.pk_unidade,

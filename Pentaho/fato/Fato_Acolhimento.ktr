@@ -430,7 +430,7 @@
     <created_date>2026/10/20 20:17:00.286</created_date>
     <modified_user>-</modified_user>
     <modified_date>2026/10/20 20:17:00.286</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -543,6 +543,41 @@
     </hop>
   </order>
   <step>
+    <name>FL - Filtra Entrada de Linhas Nulas</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>TR - Seleciona e Renomeia Variáveis</send_true_to>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>N_Identificador</leftvalue>
+        <function>IS NOT NULL</function>
+        <rightvalue/>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>IN - Dados Gerais</name>
     <type>TextFileInput</type>
     <description/>
@@ -577,7 +612,7 @@
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
     <format>DOS</format>
-    <encoding/>
+    <encoding>UTF-8</encoding>
     <length>Characters</length>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -11592,8 +11627,543 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
+      <xloc>80</xloc>
       <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>LK - sk_geografia</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Sistema Familia Acolhedora</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>sfa</schema>
+      <table>dim_geografia</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>Y</eat_row_on_failure>
+      <key>
+        <name>Município</name>
+        <field>nm_municipio</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>UF</name>
+        <field>sg_uf</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>sk_geografia</name>
+        <rename>sk_geografia</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>832</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>LK - sk_gestao</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Sistema Familia Acolhedora</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>sfa</schema>
+      <table>dim_gestao</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>ds_gestao</name>
+        <field>ds_tipo_gestao</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>sk_gestao</name>
+        <rename>sk_gestao</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1152</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>LK - sk_tempo</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Sistema Familia Acolhedora</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>sfa</schema>
+      <table>dim_tempo</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>dt_aux</name>
+        <field>dt_referencia</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>sk_tempo</name>
+        <rename>sk_tempo</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1008</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>TR - Data de Referência</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>dt_aux</name>
+        <variable>${dt_referencia}</variable>
+        <type>Date</type>
+        <format>dd/MM/yyyy</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>TR - Padroniza Textos (Trim)</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>ds_gestao</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>upper</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>N</init_cap>
+        <mask_xml>None</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>carriage return  &amp; line feed</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Município</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>upper</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>N</init_cap>
+        <mask_xml>None</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>carriage return  &amp; line feed</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>UF</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>upper</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>N</init_cap>
+        <mask_xml>None</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>carriage return  &amp; line feed</remove_special_characters>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>832</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>TR - Remove Campos Auxiliares</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>nu_acolhidos_atual</name>
+      </field>
+      <field>
+        <name>nu_acolhidos_12m</name>
+      </field>
+      <field>
+        <name>nu_masc_0a2</name>
+      </field>
+      <field>
+        <name>nu_masc_3a5</name>
+      </field>
+      <field>
+        <name>nu_masc_6a11</name>
+      </field>
+      <field>
+        <name>nu_masc_12a13</name>
+      </field>
+      <field>
+        <name>nu_masc_14a15</name>
+      </field>
+      <field>
+        <name>nu_masc_16a17</name>
+      </field>
+      <field>
+        <name>nu_masc_18mais</name>
+      </field>
+      <field>
+        <name>nu_masc_total</name>
+      </field>
+      <field>
+        <name>nu_fem_0a2</name>
+      </field>
+      <field>
+        <name>nu_fem_3a5</name>
+      </field>
+      <field>
+        <name>nu_fem_6a11</name>
+      </field>
+      <field>
+        <name>nu_fem_12a13</name>
+      </field>
+      <field>
+        <name>nu_fem_14a15</name>
+      </field>
+      <field>
+        <name>nu_fem_16a17</name>
+      </field>
+      <field>
+        <name>nu_fem_18mais</name>
+      </field>
+      <field>
+        <name>nu_fem_total</name>
+      </field>
+      <field>
+        <name>nu_orig_outro_mun</name>
+      </field>
+      <field>
+        <name>nu_orig_outro_est</name>
+      </field>
+      <field>
+        <name>nu_orig_outro_pais</name>
+      </field>
+      <field>
+        <name>nu_tempo_menos1m</name>
+      </field>
+      <field>
+        <name>nu_tempo_1a3m</name>
+      </field>
+      <field>
+        <name>nu_tempo_4a6m</name>
+      </field>
+      <field>
+        <name>nu_tempo_7a12m</name>
+      </field>
+      <field>
+        <name>nu_tempo_13a18m</name>
+      </field>
+      <field>
+        <name>nu_tempo_19a24m</name>
+      </field>
+      <field>
+        <name>nu_tempo_25a48m</name>
+      </field>
+      <field>
+        <name>nu_tempo_49a72m</name>
+      </field>
+      <field>
+        <name>nu_tempo_acima72m</name>
+      </field>
+      <field>
+        <name>nu_tempo_total</name>
+      </field>
+      <field>
+        <name>nu_cond_deficiencia</name>
+      </field>
+      <field>
+        <name>nu_cond_transtorno</name>
+      </field>
+      <field>
+        <name>nu_cond_saude_espec</name>
+      </field>
+      <field>
+        <name>nu_cond_socioeducativo</name>
+      </field>
+      <field>
+        <name>nu_cond_traj_rua</name>
+      </field>
+      <field>
+        <name>nu_cond_indigena</name>
+      </field>
+      <field>
+        <name>nu_cond_com_trad</name>
+      </field>
+      <field>
+        <name>nu_cond_dep_quimica</name>
+      </field>
+      <field>
+        <name>nu_cond_gestante</name>
+      </field>
+      <field>
+        <name>nu_raca_preta</name>
+      </field>
+      <field>
+        <name>nu_raca_parda</name>
+      </field>
+      <field>
+        <name>nu_raca_branca</name>
+      </field>
+      <field>
+        <name>nu_raca_amarela</name>
+      </field>
+      <field>
+        <name>nu_raca_indigena</name>
+      </field>
+      <field>
+        <name>nu_mot_entrega_vol</name>
+      </field>
+      <field>
+        <name>nu_mot_orfandade</name>
+      </field>
+      <field>
+        <name>nu_mot_abandono</name>
+      </field>
+      <field>
+        <name>nu_mot_drogas_pais</name>
+      </field>
+      <field>
+        <name>nu_mot_viol_fisica</name>
+      </field>
+      <field>
+        <name>nu_mot_viol_psicol</name>
+      </field>
+      <field>
+        <name>nu_mot_abuso_sexual</name>
+      </field>
+      <field>
+        <name>nu_mot_expl_sexual</name>
+      </field>
+      <field>
+        <name>nu_mot_conflito_fam</name>
+      </field>
+      <field>
+        <name>nu_mot_expl_trabalho</name>
+      </field>
+      <field>
+        <name>nu_mot_ameaca_morte</name>
+      </field>
+      <field>
+        <name>nu_mot_sit_rua_jovem</name>
+      </field>
+      <field>
+        <name>nu_mot_negligencia</name>
+      </field>
+      <field>
+        <name>nu_mot_fam_rua</name>
+      </field>
+      <field>
+        <name>nu_dest_fam_origem</name>
+      </field>
+      <field>
+        <name>nu_dest_fam_extensa</name>
+      </field>
+      <field>
+        <name>nu_dest_adocao</name>
+      </field>
+      <field>
+        <name>nu_dest_outra_unid</name>
+      </field>
+      <field>
+        <name>nu_dest_deslig_18</name>
+      </field>
+      <field>
+        <name>nu_readm_fam_origem</name>
+      </field>
+      <field>
+        <name>nu_readm_fam_extensa</name>
+      </field>
+      <field>
+        <name>nu_readm_adocao</name>
+      </field>
+      <field>
+        <name>nu_aptos_adocao</name>
+      </field>
+      <field>
+        <name>nu_apadrinhamento</name>
+      </field>
+      <field>
+        <name>nu_sem_visitas_imped</name>
+      </field>
+      <field>
+        <name>nu_sem_visitas_sem_imped</name>
+      </field>
+      <field>
+        <name>nu_pbf</name>
+      </field>
+      <field>
+        <name>nu_baixa_renda</name>
+      </field>
+      <field>
+        <name>ds_gestao</name>
+      </field>
+      <field>
+        <name>Município</name>
+      </field>
+      <field>
+        <name>UF</name>
+      </field>
+      <field>
+        <name>dt_aux</name>
+      </field>
+      <field>
+        <name>sk_geografia</name>
+      </field>
+      <field>
+        <name>sk_tempo</name>
+      </field>
+      <field>
+        <name>sk_gestao</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>ds_gestao</name>
+      </remove>
+      <remove>
+        <name>Município</name>
+      </remove>
+      <remove>
+        <name>UF</name>
+      </remove>
+      <remove>
+        <name>dt_aux</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1152</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -11907,2631 +12477,1974 @@
       </field>
       <field>
         <name>Município</name>
-        <rename/>
       </field>
       <field>
         <name>UF</name>
-        <rename/>
       </field>
       <field>
         <name>q26_22</name>
-        <rename/>
       </field>
       <field>
         <name>N_Identificador</name>
-        <rename/>
       </field>
       <field>
         <name>IBGE</name>
-        <rename/>
       </field>
       <field>
         <name>Latitude</name>
-        <rename/>
       </field>
       <field>
         <name>Longitude</name>
-        <rename/>
       </field>
       <field>
         <name>q0_1</name>
-        <rename/>
       </field>
       <field>
         <name>q0_2</name>
-        <rename/>
       </field>
       <field>
         <name>q0_3</name>
-        <rename/>
       </field>
       <field>
         <name>q0_4</name>
-        <rename/>
       </field>
       <field>
         <name>q0_5</name>
-        <rename/>
       </field>
       <field>
         <name>q0_6</name>
-        <rename/>
       </field>
       <field>
         <name>q0_7</name>
-        <rename/>
       </field>
       <field>
         <name>q0_8</name>
-        <rename/>
       </field>
       <field>
         <name>q0_9</name>
-        <rename/>
       </field>
       <field>
         <name>q0_10</name>
-        <rename/>
       </field>
       <field>
         <name>q0_11</name>
-        <rename/>
       </field>
       <field>
         <name>q0_12</name>
-        <rename/>
       </field>
       <field>
         <name>q0_13</name>
-        <rename/>
       </field>
       <field>
         <name>q0_14</name>
-        <rename/>
       </field>
       <field>
         <name>q1</name>
-        <rename/>
       </field>
       <field>
         <name>q2</name>
-        <rename/>
       </field>
       <field>
         <name>q3_1</name>
-        <rename/>
       </field>
       <field>
         <name>q3_2</name>
-        <rename/>
       </field>
       <field>
         <name>q3_3</name>
-        <rename/>
       </field>
       <field>
         <name>q3_0</name>
-        <rename/>
       </field>
       <field>
         <name>q3_98</name>
-        <rename/>
       </field>
       <field>
         <name>q4</name>
-        <rename/>
       </field>
       <field>
         <name>q5</name>
-        <rename/>
       </field>
       <field>
         <name>q5_98</name>
-        <rename/>
       </field>
       <field>
         <name>q6_1</name>
-        <rename/>
       </field>
       <field>
         <name>q6_2</name>
-        <rename/>
       </field>
       <field>
         <name>q6_99</name>
-        <rename/>
       </field>
       <field>
         <name>q6_0</name>
-        <rename/>
       </field>
       <field>
         <name>q6_99_1</name>
-        <rename/>
       </field>
       <field>
         <name>q8</name>
-        <rename/>
       </field>
       <field>
         <name>q9</name>
-        <rename/>
       </field>
       <field>
         <name>q10</name>
-        <rename/>
       </field>
       <field>
         <name>q11_1</name>
-        <rename/>
       </field>
       <field>
         <name>q11_2</name>
-        <rename/>
       </field>
       <field>
         <name>q11_99</name>
-        <rename/>
       </field>
       <field>
         <name>q11_0</name>
-        <rename/>
       </field>
       <field>
         <name>q11_98</name>
-        <rename/>
       </field>
       <field>
         <name>q11_99_1</name>
-        <rename/>
       </field>
       <field>
         <name>q12</name>
-        <rename/>
       </field>
       <field>
         <name>q13</name>
-        <rename/>
       </field>
       <field>
         <name>q14</name>
-        <rename/>
       </field>
       <field>
         <name>q14_98</name>
-        <rename/>
       </field>
       <field>
         <name>q15_1</name>
-        <rename/>
       </field>
       <field>
         <name>q15_2</name>
-        <rename/>
       </field>
       <field>
         <name>q15_3</name>
-        <rename/>
       </field>
       <field>
         <name>q15_99</name>
-        <rename/>
       </field>
       <field>
         <name>q15_0</name>
-        <rename/>
       </field>
       <field>
         <name>q15_99_1</name>
-        <rename/>
       </field>
       <field>
         <name>q16</name>
-        <rename/>
       </field>
       <field>
         <name>q16_99_1</name>
-        <rename/>
       </field>
       <field>
         <name>q17</name>
-        <rename/>
       </field>
       <field>
         <name>q19_98</name>
-        <rename/>
       </field>
       <field>
         <name>q21_1_98</name>
-        <rename/>
       </field>
       <field>
         <name>q21_2_98</name>
-        <rename/>
       </field>
       <field>
         <name>q21_3_98</name>
-        <rename/>
       </field>
       <field>
         <name>q22_1</name>
-        <rename/>
       </field>
       <field>
         <name>q22_99</name>
-        <rename/>
       </field>
       <field>
         <name>q22_99_1</name>
-        <rename/>
       </field>
       <field>
         <name>q25_1_98</name>
-        <rename/>
       </field>
       <field>
         <name>q25_2_98</name>
-        <rename/>
       </field>
       <field>
         <name>q25_3_98</name>
-        <rename/>
       </field>
       <field>
         <name>q25_4_98</name>
-        <rename/>
       </field>
       <field>
         <name>q25_5_98</name>
-        <rename/>
       </field>
       <field>
         <name>q25_6</name>
-        <rename/>
       </field>
       <field>
         <name>q25_6_98</name>
-        <rename/>
       </field>
       <field>
         <name>q25_98</name>
-        <rename/>
       </field>
       <field>
         <name>q25_98_98</name>
-        <rename/>
       </field>
       <field>
         <name>q26_5</name>
-        <rename/>
       </field>
       <field>
         <name>q26_6</name>
-        <rename/>
       </field>
       <field>
         <name>q26_7</name>
-        <rename/>
       </field>
       <field>
         <name>q26_8</name>
-        <rename/>
       </field>
       <field>
         <name>q26_15</name>
-        <rename/>
       </field>
       <field>
         <name>q26_16</name>
-        <rename/>
       </field>
       <field>
         <name>q26_21</name>
-        <rename/>
       </field>
       <field>
         <name>q26_23</name>
-        <rename/>
       </field>
       <field>
         <name>q26_24</name>
-        <rename/>
       </field>
       <field>
         <name>q26_25</name>
-        <rename/>
       </field>
       <field>
         <name>q27_1_98</name>
-        <rename/>
       </field>
       <field>
         <name>q27_2_98</name>
-        <rename/>
       </field>
       <field>
         <name>q27_3_98</name>
-        <rename/>
       </field>
       <field>
         <name>q27_4</name>
-        <rename/>
       </field>
       <field>
         <name>q27_4_98</name>
-        <rename/>
       </field>
       <field>
         <name>q27_5_98</name>
-        <rename/>
       </field>
       <field>
         <name>q27_6_98</name>
-        <rename/>
       </field>
       <field>
         <name>q28_1_98</name>
-        <rename/>
       </field>
       <field>
         <name>q28_2_98</name>
-        <rename/>
       </field>
       <field>
         <name>q28_3_98</name>
-        <rename/>
       </field>
       <field>
         <name>q29_1</name>
-        <rename/>
       </field>
       <field>
         <name>q29_1_98</name>
-        <rename/>
       </field>
       <field>
         <name>q29_2</name>
-        <rename/>
       </field>
       <field>
         <name>q29_2_98</name>
-        <rename/>
       </field>
       <field>
         <name>q29_3_98</name>
-        <rename/>
       </field>
       <field>
         <name>q29_4</name>
-        <rename/>
       </field>
       <field>
         <name>q29_4_98</name>
-        <rename/>
       </field>
       <field>
         <name>q29_5_98</name>
-        <rename/>
       </field>
       <field>
         <name>q29_6_98</name>
-        <rename/>
       </field>
       <field>
         <name>q29_7_98</name>
-        <rename/>
       </field>
       <field>
         <name>q30_98</name>
-        <rename/>
       </field>
       <field>
         <name>q31_98</name>
-        <rename/>
       </field>
       <field>
         <name>q32_1</name>
-        <rename/>
       </field>
       <field>
         <name>q32_2</name>
-        <rename/>
       </field>
       <field>
         <name>q32_3</name>
-        <rename/>
       </field>
       <field>
         <name>q32_4</name>
-        <rename/>
       </field>
       <field>
         <name>q32_5</name>
-        <rename/>
       </field>
       <field>
         <name>q32_6</name>
-        <rename/>
       </field>
       <field>
         <name>q32_99</name>
-        <rename/>
       </field>
       <field>
         <name>q32_0</name>
-        <rename/>
       </field>
       <field>
         <name>q32_99_1</name>
-        <rename/>
       </field>
       <field>
         <name>q33</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_1</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_2</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_3</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_4</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_99</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_0</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_99_1</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_1</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_2</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_3</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_4</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_99</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_0</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_99_1</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_1</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_2</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_3</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_4</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_99</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_0</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_99_1</name>
-        <rename/>
       </field>
       <field>
         <name>q35_1</name>
-        <rename/>
       </field>
       <field>
         <name>q35_2</name>
-        <rename/>
       </field>
       <field>
         <name>q35_3</name>
-        <rename/>
       </field>
       <field>
         <name>q35_4</name>
-        <rename/>
       </field>
       <field>
         <name>q35_5</name>
-        <rename/>
       </field>
       <field>
         <name>q35_6</name>
-        <rename/>
       </field>
       <field>
         <name>q35_7</name>
-        <rename/>
       </field>
       <field>
         <name>q35_8</name>
-        <rename/>
       </field>
       <field>
         <name>q35_9</name>
-        <rename/>
       </field>
       <field>
         <name>q35_10</name>
-        <rename/>
       </field>
       <field>
         <name>q35_11</name>
-        <rename/>
       </field>
       <field>
         <name>q35_12</name>
-        <rename/>
       </field>
       <field>
         <name>q35_13</name>
-        <rename/>
       </field>
       <field>
         <name>q35_14</name>
-        <rename/>
       </field>
       <field>
         <name>q35_15</name>
-        <rename/>
       </field>
       <field>
         <name>q35_16</name>
-        <rename/>
       </field>
       <field>
         <name>q35_17</name>
-        <rename/>
       </field>
       <field>
         <name>q35_18</name>
-        <rename/>
       </field>
       <field>
         <name>q35_99</name>
-        <rename/>
       </field>
       <field>
         <name>q35_0</name>
-        <rename/>
       </field>
       <field>
         <name>q35_99_1</name>
-        <rename/>
       </field>
       <field>
         <name>q36_1</name>
-        <rename/>
       </field>
       <field>
         <name>q36_2</name>
-        <rename/>
       </field>
       <field>
         <name>q36_3</name>
-        <rename/>
       </field>
       <field>
         <name>q36_4</name>
-        <rename/>
       </field>
       <field>
         <name>q36_98</name>
-        <rename/>
       </field>
       <field>
         <name>q37_1</name>
-        <rename/>
       </field>
       <field>
         <name>q37_2</name>
-        <rename/>
       </field>
       <field>
         <name>q37_3</name>
-        <rename/>
       </field>
       <field>
         <name>q37_4</name>
-        <rename/>
       </field>
       <field>
         <name>q37_5</name>
-        <rename/>
       </field>
       <field>
         <name>q37_6</name>
-        <rename/>
       </field>
       <field>
         <name>q37_99</name>
-        <rename/>
       </field>
       <field>
         <name>q37_0</name>
-        <rename/>
       </field>
       <field>
         <name>q37_7</name>
-        <rename/>
       </field>
       <field>
         <name>q38_1</name>
-        <rename/>
       </field>
       <field>
         <name>q38_2</name>
-        <rename/>
       </field>
       <field>
         <name>q38_3</name>
-        <rename/>
       </field>
       <field>
         <name>q38_99</name>
-        <rename/>
       </field>
       <field>
         <name>q38_0</name>
-        <rename/>
       </field>
       <field>
         <name>q38_99_1</name>
-        <rename/>
       </field>
       <field>
         <name>q39</name>
-        <rename/>
       </field>
       <field>
         <name>q40</name>
-        <rename/>
       </field>
       <field>
         <name>q41_1</name>
-        <rename/>
       </field>
       <field>
         <name>q41_2</name>
-        <rename/>
       </field>
       <field>
         <name>q41_3</name>
-        <rename/>
       </field>
       <field>
         <name>q41_4</name>
-        <rename/>
       </field>
       <field>
         <name>q41_99</name>
-        <rename/>
       </field>
       <field>
         <name>q41_98</name>
-        <rename/>
       </field>
       <field>
         <name>q41_0</name>
-        <rename/>
       </field>
       <field>
         <name>q41_99_1</name>
-        <rename/>
       </field>
       <field>
         <name>q42</name>
-        <rename/>
       </field>
       <field>
         <name>q43_1</name>
-        <rename/>
       </field>
       <field>
         <name>q43_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_1</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_3</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_4</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_5</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_6</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_7</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_8</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_0</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_9</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_1</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_3</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_4</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_5</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_6</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_7</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_8</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_0</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_9</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_1</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_3</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_4</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_5</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_6</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_7</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_8</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_0</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_9</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_1</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_3</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_4</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_5</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_6</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_7</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_8</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_0</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_9</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_1</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_3</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_4</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_5</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_6</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_7</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_8</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_0</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_9</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_1</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_3</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_4</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_5</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_6</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_7</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_8</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_0</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_9</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_1</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_3</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_4</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_5</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_6</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_7</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_8</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_0</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_9</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_1</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_3</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_4</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_5</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_6</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_7</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_8</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_0</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_9</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_1</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_3</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_4</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_5</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_6</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_7</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_8</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_0</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_9</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_1</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_3</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_4</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_5</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_6</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_7</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_8</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_0</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_9</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_1</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_3</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_4</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_5</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_6</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_7</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_8</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_0</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_9</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_1</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_2</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_3</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_4</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_5</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_6</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_7</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_8</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_0</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_9</name>
-        <rename/>
       </field>
       <field>
         <name>q45</name>
-        <rename/>
       </field>
       <field>
         <name>q46</name>
-        <rename/>
       </field>
       <field>
         <name>q47</name>
-        <rename/>
       </field>
       <field>
         <name>q48_0</name>
-        <rename/>
       </field>
       <field>
         <name>q49</name>
-        <rename/>
       </field>
       <field>
         <name>q49_99</name>
-        <rename/>
       </field>
       <field>
         <name>q50_1</name>
-        <rename/>
       </field>
       <field>
         <name>q50_2</name>
-        <rename/>
       </field>
       <field>
         <name>q50_3</name>
-        <rename/>
       </field>
       <field>
         <name>q50_4</name>
-        <rename/>
       </field>
       <field>
         <name>q50_5</name>
-        <rename/>
       </field>
       <field>
         <name>q50_6</name>
-        <rename/>
       </field>
       <field>
         <name>q51_1</name>
-        <rename/>
       </field>
       <field>
         <name>q51_2</name>
-        <rename/>
       </field>
       <field>
         <name>q51_3</name>
-        <rename/>
       </field>
       <field>
         <name>q51_4</name>
-        <rename/>
       </field>
       <field>
         <name>q51_5</name>
-        <rename/>
       </field>
       <field>
         <name>q51_6</name>
-        <rename/>
       </field>
       <field>
         <name>q51_7</name>
-        <rename/>
       </field>
       <field>
         <name>q51_8</name>
-        <rename/>
       </field>
       <field>
         <name>q51_9</name>
-        <rename/>
       </field>
       <field>
         <name>q51_10</name>
-        <rename/>
       </field>
       <field>
         <name>q51_11</name>
-        <rename/>
       </field>
       <field>
         <name>q51_11_1</name>
-        <rename/>
       </field>
       <field>
         <name>q52</name>
-        <rename/>
       </field>
       <field>
         <name>q53</name>
-        <rename/>
       </field>
       <field>
         <name>q54_1</name>
-        <rename/>
       </field>
       <field>
         <name>q54_2</name>
-        <rename/>
       </field>
       <field>
         <name>q54_0</name>
-        <rename/>
       </field>
       <field>
         <name>q54_98</name>
-        <rename/>
       </field>
       <field>
         <name>q54_1_1</name>
-        <rename/>
       </field>
       <field>
         <name>q54_2_1</name>
-        <rename/>
       </field>
       <field>
         <name>IBGE7</name>
-        <rename/>
       </field>
       <field>
         <name>codigo_UF</name>
-        <rename/>
       </field>
       <field>
         <name>Região</name>
-        <rename/>
       </field>
       <field>
         <name>areaKm2</name>
-        <rename/>
       </field>
       <field>
         <name>Pop_total_2022</name>
-        <rename/>
       </field>
       <field>
         <name>Porte_pop2022</name>
-        <rename/>
       </field>
       <field>
         <name>Q_incompleto</name>
-        <rename/>
       </field>
       <field>
         <name>q1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q3_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q3_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q3_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q3_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q3_98_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q11_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q11_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q11_99_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q11_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q11_98_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q15_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q15_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q15_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q15_99_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q15_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_1_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_1_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_1_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_1_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_1_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_1_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_1_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_2_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_2_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_2_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_2_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_2_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_2_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_2_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q20_total</name>
-        <rename/>
       </field>
       <field>
         <name>q21_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q21_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q21_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q23_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q23_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q23_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q23_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q23_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q23_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q23_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q23_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q23_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q23_10_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q24_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q24_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q24_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q24_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q24_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q24_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q24_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q24_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q24_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q25_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q25_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q25_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q25_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q25_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q25_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q25_98_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_10_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_11_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_12_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_13_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_14_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_15_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_16_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_17_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_18_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_19_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_20_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_21_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_22_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_23_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_24_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q26_25_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q27_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q27_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q27_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q27_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q27_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q27_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q28_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q28_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q28_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q29_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q29_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q29_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q29_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q29_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q29_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q29_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q30_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q31_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q32_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q32_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q32_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q32_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q32_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q32_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q32_99_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q32_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_99_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_1_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_99_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_2_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_99_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q34_3_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_10_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_11_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_12_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_13_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_14_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_15_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_16_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_17_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_18_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_99_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q35_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q36_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q36_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q36_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q36_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q36_98_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q37_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q37_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q37_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q37_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q37_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q37_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q37_99_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q37_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q37_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q38_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q38_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q38_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q38_99_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q38_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q41_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q41_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q41_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q41_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q41_99_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q41_98_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q41_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q42_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_1_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_2_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_3_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_4_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_5_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_6_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_7_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_8_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_9_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_10_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_11_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_3_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_4_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_5_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_6_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_7_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_8_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q44_12_9_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q54_1_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q54_2_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q54_0_velha</name>
-        <rename/>
       </field>
       <field>
         <name>q54_98_velha</name>
-        <rename/>
       </field>
       <field>
         <name>d9</name>
-        <rename/>
       </field>
       <field>
         <name>d12</name>
-        <rename/>
       </field>
       <field>
         <name>d14</name>
-        <rename/>
       </field>
       <field>
         <name>d51_11_1</name>
-        <rename/>
       </field>
       <field>
         <name>d54_1_1</name>
-        <rename/>
       </field>
       <field>
         <name>d54_2_1</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <remove>
@@ -16509,1087 +16422,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FL - Filtra Entrada de Linhas Nulas</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>TR - Seleciona e Renomeia Variáveis</send_true_to>
-    <send_false_to/>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>N_Identificador</leftvalue>
-        <function>IS NOT NULL</function>
-        <rightvalue/>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>TR - Data de Referência</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>dt_aux</name>
-        <variable>${dt_referencia}</variable>
-        <type>Date</type>
-        <format>dd/MM/yyyy</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>864</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>TR - Padroniza Textos (Trim)</name>
-    <type>StringOperations</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>ds_gestao</in_stream_name>
-        <out_stream_name/>
-        <trim_type>both</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>carriage return  &amp; line feed</remove_special_characters>
-      </field>
-      <field>
-        <in_stream_name>Município</in_stream_name>
-        <out_stream_name/>
-        <trim_type>both</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>carriage return  &amp; line feed</remove_special_characters>
-      </field>
-      <field>
-        <in_stream_name>UF</in_stream_name>
-        <out_stream_name/>
-        <trim_type>both</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>N</init_cap>
-        <mask_xml>None</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>carriage return  &amp; line feed</remove_special_characters>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1088</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>LK - sk_geografia</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Sistema Familia Acolhedora</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>sfa</schema>
-      <table>dim_geografia</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>Y</eat_row_on_failure>
-      <key>
-        <name>Município</name>
-        <field>nm_municipio</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>UF</name>
-        <field>sg_uf</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>sk_geografia</name>
-        <rename>sk_geografia</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1328</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>LK - sk_tempo</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Sistema Familia Acolhedora</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>sfa</schema>
-      <table>dim_tempo</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>dt_aux</name>
-        <field>dt_referencia</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>sk_tempo</name>
-        <rename>sk_tempo</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1504</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>LK - sk_gestao</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Sistema Familia Acolhedora</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>sfa</schema>
-      <table>dim_gestao</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>ds_gestao</name>
-        <field>ds_tipo_gestao</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>sk_gestao</name>
-        <rename>sk_gestao</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1664</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>TR - Remove Campos Auxiliares</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>nu_acolhidos_atual</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_acolhidos_12m</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_masc_0a2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_masc_3a5</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_masc_6a11</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_masc_12a13</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_masc_14a15</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_masc_16a17</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_masc_18mais</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_masc_total</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_fem_0a2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_fem_3a5</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_fem_6a11</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_fem_12a13</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_fem_14a15</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_fem_16a17</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_fem_18mais</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_fem_total</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_orig_outro_mun</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_orig_outro_est</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_orig_outro_pais</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_tempo_menos1m</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_tempo_1a3m</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_tempo_4a6m</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_tempo_7a12m</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_tempo_13a18m</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_tempo_19a24m</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_tempo_25a48m</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_tempo_49a72m</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_tempo_acima72m</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_tempo_total</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_cond_deficiencia</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_cond_transtorno</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_cond_saude_espec</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_cond_socioeducativo</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_cond_traj_rua</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_cond_indigena</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_cond_com_trad</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_cond_dep_quimica</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_cond_gestante</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_raca_preta</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_raca_parda</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_raca_branca</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_raca_amarela</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_raca_indigena</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_entrega_vol</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_orfandade</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_abandono</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_drogas_pais</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_viol_fisica</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_viol_psicol</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_abuso_sexual</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_expl_sexual</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_conflito_fam</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_expl_trabalho</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_ameaca_morte</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_sit_rua_jovem</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_negligencia</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_mot_fam_rua</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_dest_fam_origem</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_dest_fam_extensa</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_dest_adocao</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_dest_outra_unid</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_dest_deslig_18</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_readm_fam_origem</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_readm_fam_extensa</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_readm_adocao</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_aptos_adocao</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_apadrinhamento</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_sem_visitas_imped</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_sem_visitas_sem_imped</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_pbf</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_baixa_renda</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ds_gestao</name>
-        <rename/>
-      </field>
-      <field>
-        <name>Município</name>
-        <rename/>
-      </field>
-      <field>
-        <name>UF</name>
-        <rename/>
-      </field>
-      <field>
-        <name>dt_aux</name>
-        <rename/>
-      </field>
-      <field>
-        <name>sk_geografia</name>
-        <rename/>
-      </field>
-      <field>
-        <name>sk_tempo</name>
-        <rename/>
-      </field>
-      <field>
-        <name>sk_gestao</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>ds_gestao</name>
-      </remove>
-      <remove>
-        <name>Município</name>
-      </remove>
-      <remove>
-        <name>UF</name>
-      </remove>
-      <remove>
-        <name>dt_aux</name>
-      </remove>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1888</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>OUT - sfa.fato_acolhimento</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Sistema Familia Acolhedora</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>sfa</schema>
-      <table>fato_acolhimento</table>
-      <key>
-        <name>sk_geografia</name>
-        <field>sk_geografia</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>sk_gestao</name>
-        <field>sk_gestao</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>sk_tempo</name>
-        <field>sk_tempo</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>nu_acolhidos_atual</name>
-        <rename>nu_acolhidos_atual</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_acolhidos_12m</name>
-        <rename>nu_acolhidos_12m</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_masc_0a2</name>
-        <rename>nu_masc_0a2</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_masc_3a5</name>
-        <rename>nu_masc_3a5</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_masc_6a11</name>
-        <rename>nu_masc_6a11</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_masc_12a13</name>
-        <rename>nu_masc_12a13</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_masc_14a15</name>
-        <rename>nu_masc_14a15</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_masc_16a17</name>
-        <rename>nu_masc_16a17</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_masc_18mais</name>
-        <rename>nu_masc_18mais</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_masc_total</name>
-        <rename>nu_masc_total</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_fem_0a2</name>
-        <rename>nu_fem_0a2</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_fem_3a5</name>
-        <rename>nu_fem_3a5</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_fem_6a11</name>
-        <rename>nu_fem_6a11</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_fem_12a13</name>
-        <rename>nu_fem_12a13</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_fem_14a15</name>
-        <rename>nu_fem_14a15</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_fem_16a17</name>
-        <rename>nu_fem_16a17</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_fem_18mais</name>
-        <rename>nu_fem_18mais</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_fem_total</name>
-        <rename>nu_fem_total</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_orig_outro_mun</name>
-        <rename>nu_orig_outro_mun</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_orig_outro_est</name>
-        <rename>nu_orig_outro_est</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_orig_outro_pais</name>
-        <rename>nu_orig_outro_pais</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_tempo_menos1m</name>
-        <rename>nu_tempo_menos1m</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_tempo_1a3m</name>
-        <rename>nu_tempo_1a3m</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_tempo_4a6m</name>
-        <rename>nu_tempo_4a6m</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_tempo_7a12m</name>
-        <rename>nu_tempo_7a12m</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_tempo_13a18m</name>
-        <rename>nu_tempo_13a18m</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_tempo_19a24m</name>
-        <rename>nu_tempo_19a24m</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_tempo_25a48m</name>
-        <rename>nu_tempo_25a48m</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_tempo_49a72m</name>
-        <rename>nu_tempo_49a72m</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_tempo_acima72m</name>
-        <rename>nu_tempo_acima72m</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_tempo_total</name>
-        <rename>nu_tempo_total</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_cond_deficiencia</name>
-        <rename>nu_cond_deficiencia</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_cond_transtorno</name>
-        <rename>nu_cond_transtorno</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_cond_saude_espec</name>
-        <rename>nu_cond_saude_espec</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_cond_socioeducativo</name>
-        <rename>nu_cond_socioeducativo</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_cond_traj_rua</name>
-        <rename>nu_cond_traj_rua</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_cond_indigena</name>
-        <rename>nu_cond_indigena</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_cond_com_trad</name>
-        <rename>nu_cond_com_trad</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_cond_dep_quimica</name>
-        <rename>nu_cond_dep_quimica</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_cond_gestante</name>
-        <rename>nu_cond_gestante</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_raca_preta</name>
-        <rename>nu_raca_preta</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_raca_parda</name>
-        <rename>nu_raca_parda</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_raca_branca</name>
-        <rename>nu_raca_branca</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_raca_amarela</name>
-        <rename>nu_raca_amarela</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_raca_indigena</name>
-        <rename>nu_raca_indigena</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_entrega_vol</name>
-        <rename>nu_mot_entrega_vol</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_orfandade</name>
-        <rename>nu_mot_orfandade</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_abandono</name>
-        <rename>nu_mot_abandono</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_drogas_pais</name>
-        <rename>nu_mot_drogas_pais</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_viol_fisica</name>
-        <rename>nu_mot_viol_fisica</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_viol_psicol</name>
-        <rename>nu_mot_viol_psicol</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_abuso_sexual</name>
-        <rename>nu_mot_abuso_sexual</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_expl_sexual</name>
-        <rename>nu_mot_expl_sexual</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_conflito_fam</name>
-        <rename>nu_mot_conflito_fam</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_expl_trabalho</name>
-        <rename>nu_mot_expl_trabalho</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_ameaca_morte</name>
-        <rename>nu_mot_ameaca_morte</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_sit_rua_jovem</name>
-        <rename>nu_mot_sit_rua_jovem</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_negligencia</name>
-        <rename>nu_mot_negligencia</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_mot_fam_rua</name>
-        <rename>nu_mot_fam_rua</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_dest_fam_origem</name>
-        <rename>nu_dest_fam_origem</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_dest_fam_extensa</name>
-        <rename>nu_dest_fam_extensa</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_dest_adocao</name>
-        <rename>nu_dest_adocao</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_dest_outra_unid</name>
-        <rename>nu_dest_outra_unid</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_dest_deslig_18</name>
-        <rename>nu_dest_deslig_18</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_readm_fam_origem</name>
-        <rename>nu_readm_fam_origem</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_readm_fam_extensa</name>
-        <rename>nu_readm_fam_extensa</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_readm_adocao</name>
-        <rename>nu_readm_adocao</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_aptos_adocao</name>
-        <rename>nu_aptos_adocao</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_apadrinhamento</name>
-        <rename>nu_apadrinhamento</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_sem_visitas_imped</name>
-        <rename>nu_sem_visitas_imped</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_sem_visitas_sem_imped</name>
-        <rename>nu_sem_visitas_sem_imped</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_pbf</name>
-        <rename>nu_pbf</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>nu_baixa_renda</name>
-        <rename>nu_baixa_renda</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>sk_geografia</name>
-        <rename>sk_geografia</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>sk_tempo</name>
-        <rename>sk_tempo</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>sk_gestao</name>
-        <rename>sk_gestao</rename>
-        <update>N</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>2336</xloc>
+      <xloc>592</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
@@ -17647,7 +16480,355 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2128</xloc>
+      <xloc>1376</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>OUT - sfa.fato_acolhimento</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Sistema Familia Acolhedora</connection>
+    <schema>sfa</schema>
+    <table>fato_acolhimento</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>nu_acolhidos_atual</column_name>
+        <stream_name>nu_acolhidos_atual</stream_name>
+      </field>
+      <field>
+        <column_name>nu_acolhidos_12m</column_name>
+        <stream_name>nu_acolhidos_12m</stream_name>
+      </field>
+      <field>
+        <column_name>nu_masc_0a2</column_name>
+        <stream_name>nu_masc_0a2</stream_name>
+      </field>
+      <field>
+        <column_name>nu_masc_3a5</column_name>
+        <stream_name>nu_masc_3a5</stream_name>
+      </field>
+      <field>
+        <column_name>nu_masc_6a11</column_name>
+        <stream_name>nu_masc_6a11</stream_name>
+      </field>
+      <field>
+        <column_name>nu_masc_12a13</column_name>
+        <stream_name>nu_masc_12a13</stream_name>
+      </field>
+      <field>
+        <column_name>nu_masc_14a15</column_name>
+        <stream_name>nu_masc_14a15</stream_name>
+      </field>
+      <field>
+        <column_name>nu_masc_16a17</column_name>
+        <stream_name>nu_masc_16a17</stream_name>
+      </field>
+      <field>
+        <column_name>nu_masc_18mais</column_name>
+        <stream_name>nu_masc_18mais</stream_name>
+      </field>
+      <field>
+        <column_name>nu_masc_total</column_name>
+        <stream_name>nu_masc_total</stream_name>
+      </field>
+      <field>
+        <column_name>nu_fem_0a2</column_name>
+        <stream_name>nu_fem_0a2</stream_name>
+      </field>
+      <field>
+        <column_name>nu_fem_3a5</column_name>
+        <stream_name>nu_fem_3a5</stream_name>
+      </field>
+      <field>
+        <column_name>nu_fem_6a11</column_name>
+        <stream_name>nu_fem_6a11</stream_name>
+      </field>
+      <field>
+        <column_name>nu_fem_12a13</column_name>
+        <stream_name>nu_fem_12a13</stream_name>
+      </field>
+      <field>
+        <column_name>nu_fem_14a15</column_name>
+        <stream_name>nu_fem_14a15</stream_name>
+      </field>
+      <field>
+        <column_name>nu_fem_16a17</column_name>
+        <stream_name>nu_fem_16a17</stream_name>
+      </field>
+      <field>
+        <column_name>nu_fem_18mais</column_name>
+        <stream_name>nu_fem_18mais</stream_name>
+      </field>
+      <field>
+        <column_name>nu_fem_total</column_name>
+        <stream_name>nu_fem_total</stream_name>
+      </field>
+      <field>
+        <column_name>nu_orig_outro_mun</column_name>
+        <stream_name>nu_orig_outro_mun</stream_name>
+      </field>
+      <field>
+        <column_name>nu_orig_outro_est</column_name>
+        <stream_name>nu_orig_outro_est</stream_name>
+      </field>
+      <field>
+        <column_name>nu_orig_outro_pais</column_name>
+        <stream_name>nu_orig_outro_pais</stream_name>
+      </field>
+      <field>
+        <column_name>nu_tempo_menos1m</column_name>
+        <stream_name>nu_tempo_menos1m</stream_name>
+      </field>
+      <field>
+        <column_name>nu_tempo_1a3m</column_name>
+        <stream_name>nu_tempo_1a3m</stream_name>
+      </field>
+      <field>
+        <column_name>nu_tempo_4a6m</column_name>
+        <stream_name>nu_tempo_4a6m</stream_name>
+      </field>
+      <field>
+        <column_name>nu_tempo_7a12m</column_name>
+        <stream_name>nu_tempo_7a12m</stream_name>
+      </field>
+      <field>
+        <column_name>nu_tempo_13a18m</column_name>
+        <stream_name>nu_tempo_13a18m</stream_name>
+      </field>
+      <field>
+        <column_name>nu_tempo_19a24m</column_name>
+        <stream_name>nu_tempo_19a24m</stream_name>
+      </field>
+      <field>
+        <column_name>nu_tempo_25a48m</column_name>
+        <stream_name>nu_tempo_25a48m</stream_name>
+      </field>
+      <field>
+        <column_name>nu_tempo_49a72m</column_name>
+        <stream_name>nu_tempo_49a72m</stream_name>
+      </field>
+      <field>
+        <column_name>nu_tempo_acima72m</column_name>
+        <stream_name>nu_tempo_acima72m</stream_name>
+      </field>
+      <field>
+        <column_name>nu_tempo_total</column_name>
+        <stream_name>nu_tempo_total</stream_name>
+      </field>
+      <field>
+        <column_name>nu_cond_deficiencia</column_name>
+        <stream_name>nu_cond_deficiencia</stream_name>
+      </field>
+      <field>
+        <column_name>nu_cond_transtorno</column_name>
+        <stream_name>nu_cond_transtorno</stream_name>
+      </field>
+      <field>
+        <column_name>nu_cond_saude_espec</column_name>
+        <stream_name>nu_cond_saude_espec</stream_name>
+      </field>
+      <field>
+        <column_name>nu_cond_socioeducativo</column_name>
+        <stream_name>nu_cond_socioeducativo</stream_name>
+      </field>
+      <field>
+        <column_name>nu_cond_traj_rua</column_name>
+        <stream_name>nu_cond_traj_rua</stream_name>
+      </field>
+      <field>
+        <column_name>nu_cond_indigena</column_name>
+        <stream_name>nu_cond_indigena</stream_name>
+      </field>
+      <field>
+        <column_name>nu_cond_com_trad</column_name>
+        <stream_name>nu_cond_com_trad</stream_name>
+      </field>
+      <field>
+        <column_name>nu_cond_dep_quimica</column_name>
+        <stream_name>nu_cond_dep_quimica</stream_name>
+      </field>
+      <field>
+        <column_name>nu_cond_gestante</column_name>
+        <stream_name>nu_cond_gestante</stream_name>
+      </field>
+      <field>
+        <column_name>nu_raca_preta</column_name>
+        <stream_name>nu_raca_preta</stream_name>
+      </field>
+      <field>
+        <column_name>nu_raca_parda</column_name>
+        <stream_name>nu_raca_parda</stream_name>
+      </field>
+      <field>
+        <column_name>nu_raca_branca</column_name>
+        <stream_name>nu_raca_branca</stream_name>
+      </field>
+      <field>
+        <column_name>nu_raca_amarela</column_name>
+        <stream_name>nu_raca_amarela</stream_name>
+      </field>
+      <field>
+        <column_name>nu_raca_indigena</column_name>
+        <stream_name>nu_raca_indigena</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_entrega_vol</column_name>
+        <stream_name>nu_mot_entrega_vol</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_orfandade</column_name>
+        <stream_name>nu_mot_orfandade</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_abandono</column_name>
+        <stream_name>nu_mot_abandono</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_drogas_pais</column_name>
+        <stream_name>nu_mot_drogas_pais</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_viol_fisica</column_name>
+        <stream_name>nu_mot_viol_fisica</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_viol_psicol</column_name>
+        <stream_name>nu_mot_viol_psicol</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_abuso_sexual</column_name>
+        <stream_name>nu_mot_abuso_sexual</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_expl_sexual</column_name>
+        <stream_name>nu_mot_expl_sexual</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_conflito_fam</column_name>
+        <stream_name>nu_mot_conflito_fam</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_expl_trabalho</column_name>
+        <stream_name>nu_mot_expl_trabalho</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_ameaca_morte</column_name>
+        <stream_name>nu_mot_ameaca_morte</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_sit_rua_jovem</column_name>
+        <stream_name>nu_mot_sit_rua_jovem</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_negligencia</column_name>
+        <stream_name>nu_mot_negligencia</stream_name>
+      </field>
+      <field>
+        <column_name>nu_mot_fam_rua</column_name>
+        <stream_name>nu_mot_fam_rua</stream_name>
+      </field>
+      <field>
+        <column_name>nu_dest_fam_origem</column_name>
+        <stream_name>nu_dest_fam_origem</stream_name>
+      </field>
+      <field>
+        <column_name>nu_dest_fam_extensa</column_name>
+        <stream_name>nu_dest_fam_extensa</stream_name>
+      </field>
+      <field>
+        <column_name>nu_dest_adocao</column_name>
+        <stream_name>nu_dest_adocao</stream_name>
+      </field>
+      <field>
+        <column_name>nu_dest_outra_unid</column_name>
+        <stream_name>nu_dest_outra_unid</stream_name>
+      </field>
+      <field>
+        <column_name>nu_dest_deslig_18</column_name>
+        <stream_name>nu_dest_deslig_18</stream_name>
+      </field>
+      <field>
+        <column_name>nu_readm_fam_origem</column_name>
+        <stream_name>nu_readm_fam_origem</stream_name>
+      </field>
+      <field>
+        <column_name>nu_readm_fam_extensa</column_name>
+        <stream_name>nu_readm_fam_extensa</stream_name>
+      </field>
+      <field>
+        <column_name>nu_readm_adocao</column_name>
+        <stream_name>nu_readm_adocao</stream_name>
+      </field>
+      <field>
+        <column_name>nu_aptos_adocao</column_name>
+        <stream_name>nu_aptos_adocao</stream_name>
+      </field>
+      <field>
+        <column_name>nu_apadrinhamento</column_name>
+        <stream_name>nu_apadrinhamento</stream_name>
+      </field>
+      <field>
+        <column_name>nu_sem_visitas_imped</column_name>
+        <stream_name>nu_sem_visitas_imped</stream_name>
+      </field>
+      <field>
+        <column_name>nu_sem_visitas_sem_imped</column_name>
+        <stream_name>nu_sem_visitas_sem_imped</stream_name>
+      </field>
+      <field>
+        <column_name>nu_pbf</column_name>
+        <stream_name>nu_pbf</stream_name>
+      </field>
+      <field>
+        <column_name>nu_baixa_renda</column_name>
+        <stream_name>nu_baixa_renda</stream_name>
+      </field>
+      <field>
+        <column_name>sk_geografia</column_name>
+        <stream_name>sk_geografia</stream_name>
+      </field>
+      <field>
+        <column_name>sk_tempo</column_name>
+        <stream_name>sk_tempo</stream_name>
+      </field>
+      <field>
+        <column_name>sk_gestao</column_name>
+        <stream_name>sk_gestao</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1376</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>

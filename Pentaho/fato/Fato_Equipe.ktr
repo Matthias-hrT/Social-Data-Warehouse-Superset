@@ -431,7 +431,7 @@
     <created_date>2026/10/19 20:33:06.392</created_date>
     <modified_user>-</modified_user>
     <modified_date>2026/10/19 20:33:06.392</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -528,11 +528,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>TR - Trata Nulos</from>
-      <to>OUT - sfa.fato_equipe</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>IN - RH Equipe</from>
       <to>FL - Filtra Entrada de Linha Nulas</to>
       <enabled>Y</enabled>
@@ -542,7 +537,47 @@
       <to>TR - Seleciona e Renomeia Variáveis</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>TR - Trata Nulos</from>
+      <to>OUT - sfa.fato_equipe</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <step>
+    <name>FL - Filtra Entrada de Linha Nulas</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>TR - Seleciona e Renomeia Variáveis</send_true_to>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>N_Identificador</leftvalue>
+        <function>IS NOT NULL</function>
+        <rightvalue/>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>IN - RH Equipe</name>
     <type>TextFileInput</type>
@@ -578,7 +613,7 @@
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
     <format>DOS</format>
-    <encoding/>
+    <encoding>UTF-8</encoding>
     <length>Characters</length>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -1354,8 +1389,8 @@
     </GUI>
   </step>
   <step>
-    <name>TR - Seleciona e Renomeia Variáveis</name>
-    <type>SelectValues</type>
+    <name>LK - sk_geografia</name>
+    <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1364,332 +1399,35 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>q55_3</name>
-        <rename>ds_sexo</rename>
-      </field>
-      <field>
-        <name>q55_10</name>
-        <rename>ds_profissao</rename>
-      </field>
-      <field>
-        <name>d55_11</name>
-        <rename>ds_tipo_vinculo</rename>
-      </field>
-      <field>
-        <name>q55_12</name>
-        <rename>ds_funcao</rename>
-      </field>
-      <field>
-        <name>q55_13</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_2_Faixas_etarias</name>
-        <rename>ds_faixa_etaria</rename>
-      </field>
-      <field>
-        <name>d55_9</name>
-        <rename>ds_nivel_escolaridade</rename>
-      </field>
-      <field>
-        <name>q7</name>
-        <rename>ds_gestao</rename>
-      </field>
-      <field>
+    <connection>Sistema Familia Acolhedora</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>sfa</schema>
+      <table>dim_geografia</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>Y</eat_row_on_failure>
+      <key>
         <name>Município</name>
-        <rename/>
-      </field>
-      <field>
+        <field>nm_municipio</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
         <name>UF</name>
-        <rename/>
-      </field>
-      <field>
-        <name>qIBGE7</name>
-        <rename/>
-      </field>
-      <field>
-        <name>N_Identificador</name>
-        <rename/>
-      </field>
-      <field>
-        <name>IBGE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>q55_9</name>
-        <rename/>
-      </field>
-      <field>
-        <name>codigo_UF</name>
-        <rename/>
-      </field>
-      <field>
-        <name>Região</name>
-        <rename/>
-      </field>
-      <field>
-        <name>areaKm2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>Pop_total_2022</name>
-        <rename/>
-      </field>
-      <field>
-        <name>Porte_pop2022</name>
-        <rename/>
-      </field>
-      <field>
-        <name>Q_incompleto</name>
-        <rename/>
-      </field>
-      <field>
-        <name>DataCenso</name>
-        <rename/>
-      </field>
-      <field>
-        <name>DataCenso_2024</name>
-        <rename/>
-      </field>
-      <field>
-        <name>q55_11</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_9bin1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_9bin2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_9bin3</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_10bin1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_10bin2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_10bin3</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_10bin4</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_10bin5</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_11bin1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_11bin2</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_11bin3</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_11bin4</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_9bin1_sum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_9bin2_sum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_9bin3_sum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_10bin1_sum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_10bin2_sum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_10bin3_sum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_10bin4_sum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_10bin5_sum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_11bin1_sum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_11bin2_sum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_11bin3_sum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>d55_11bin4_sum</name>
-        <rename/>
-      </field>
-      <field>
-        <name>nu_trabalhadores</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>N_Identificador</name>
-      </remove>
-      <remove>
-        <name>IBGE</name>
-      </remove>
-      <remove>
-        <name>qIBGE7</name>
-      </remove>
-      <remove>
-        <name>codigo_UF</name>
-      </remove>
-      <remove>
-        <name>Região</name>
-      </remove>
-      <remove>
-        <name>areaKm2</name>
-      </remove>
-      <remove>
-        <name>Pop_total_2022</name>
-      </remove>
-      <remove>
-        <name>Porte_pop2022</name>
-      </remove>
-      <remove>
-        <name>Q_incompleto</name>
-      </remove>
-      <remove>
-        <name>DataCenso</name>
-      </remove>
-      <remove>
-        <name>DataCenso_2024</name>
-      </remove>
-      <remove>
-        <name>d55_9bin1</name>
-      </remove>
-      <remove>
-        <name>d55_9bin2</name>
-      </remove>
-      <remove>
-        <name>d55_9bin3</name>
-      </remove>
-      <remove>
-        <name>d55_10bin1</name>
-      </remove>
-      <remove>
-        <name>d55_10bin2</name>
-      </remove>
-      <remove>
-        <name>d55_10bin3</name>
-      </remove>
-      <remove>
-        <name>d55_10bin4</name>
-      </remove>
-      <remove>
-        <name>d55_10bin5</name>
-      </remove>
-      <remove>
-        <name>d55_11bin1</name>
-      </remove>
-      <remove>
-        <name>d55_11bin2</name>
-      </remove>
-      <remove>
-        <name>d55_11bin3</name>
-      </remove>
-      <remove>
-        <name>d55_11bin4</name>
-      </remove>
-      <remove>
-        <name>d55_9bin1_sum</name>
-      </remove>
-      <remove>
-        <name>d55_9bin2_sum</name>
-      </remove>
-      <remove>
-        <name>d55_9bin3_sum</name>
-      </remove>
-      <remove>
-        <name>d55_10bin1_sum</name>
-      </remove>
-      <remove>
-        <name>d55_10bin2_sum</name>
-      </remove>
-      <remove>
-        <name>d55_10bin3_sum</name>
-      </remove>
-      <remove>
-        <name>d55_10bin4_sum</name>
-      </remove>
-      <remove>
-        <name>d55_10bin5_sum</name>
-      </remove>
-      <remove>
-        <name>d55_11bin1_sum</name>
-      </remove>
-      <remove>
-        <name>d55_11bin2_sum</name>
-      </remove>
-      <remove>
-        <name>d55_11bin3_sum</name>
-      </remove>
-      <remove>
-        <name>d55_11bin4_sum</name>
-      </remove>
-      <remove>
-        <name>nu_trabalhadores</name>
-      </remove>
-      <remove>
-        <name>q55_9</name>
-      </remove>
-      <remove>
-        <name>q55_11</name>
-      </remove>
-      <meta>
-        <name>q55_13</name>
-        <rename>dt_inicio_exercicio</rename>
-        <type>Date</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask>dd/MM/yyyy</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
+        <field>sg_uf</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>sk_geografia</name>
+        <rename>sk_geografia</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1699,7 +1437,103 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
+      <xloc>1296</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>LK - sk_gestao</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Sistema Familia Acolhedora</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>sfa</schema>
+      <table>dim_gestao</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>ds_gestao</name>
+        <field>ds_tipo_gestao</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>sk_gestao</name>
+        <rename>sk_gestao</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1632</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>LK - sk_tempo</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Sistema Familia Acolhedora</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>sfa</schema>
+      <table>dim_tempo</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>dt_aux</name>
+        <field>dt_referencia</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>sk_tempo</name>
+        <rename>sk_tempo</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1472</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1888,156 +1722,6 @@
     </GUI>
   </step>
   <step>
-    <name>LK - sk_geografia</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Sistema Familia Acolhedora</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>sfa</schema>
-      <table>dim_geografia</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>Y</eat_row_on_failure>
-      <key>
-        <name>Município</name>
-        <field>nm_municipio</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>UF</name>
-        <field>sg_uf</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>sk_geografia</name>
-        <rename>sk_geografia</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1296</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>LK - sk_tempo</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Sistema Familia Acolhedora</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>sfa</schema>
-      <table>dim_tempo</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>dt_aux</name>
-        <field>dt_referencia</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>sk_tempo</name>
-        <rename>sk_tempo</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1472</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>LK - sk_gestao</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Sistema Familia Acolhedora</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>sfa</schema>
-      <table>dim_gestao</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>ds_gestao</name>
-        <field>ds_tipo_gestao</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>sk_gestao</name>
-        <rename>sk_gestao</rename>
-        <default/>
-        <type>None</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1632</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>TR - Remove Campos Auxiliares</name>
     <type>SelectValues</type>
     <description/>
@@ -2051,59 +1735,45 @@
     <fields>
       <field>
         <name>ds_sexo</name>
-        <rename/>
       </field>
       <field>
         <name>ds_profissao</name>
-        <rename/>
       </field>
       <field>
         <name>ds_tipo_vinculo</name>
-        <rename/>
       </field>
       <field>
         <name>ds_funcao</name>
-        <rename/>
       </field>
       <field>
         <name>dt_inicio_exercicio</name>
-        <rename/>
       </field>
       <field>
         <name>ds_faixa_etaria</name>
-        <rename/>
       </field>
       <field>
         <name>ds_nivel_escolaridade</name>
-        <rename/>
       </field>
       <field>
         <name>ds_gestao</name>
-        <rename/>
       </field>
       <field>
         <name>Município</name>
-        <rename/>
       </field>
       <field>
         <name>UF</name>
-        <rename/>
       </field>
       <field>
         <name>dt_aux</name>
-        <rename/>
       </field>
       <field>
         <name>sk_geografia</name>
-        <rename/>
       </field>
       <field>
         <name>sk_tempo</name>
-        <rename/>
       </field>
       <field>
         <name>sk_gestao</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <remove>
@@ -2134,8 +1804,8 @@
     </GUI>
   </step>
   <step>
-    <name>OUT - sfa.fato_equipe</name>
-    <type>InsertUpdate</type>
+    <name>TR - Seleciona e Renomeia Variáveis</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -2144,87 +1814,291 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Sistema Familia Acolhedora</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>sfa</schema>
-      <table>fato_equipe</table>
-      <key>
-        <name>sk_geografia</name>
-        <field>sk_geografia</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>sk_tempo</name>
-        <field>sk_tempo</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>sk_gestao</name>
-        <field>sk_gestao</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>dt_inicio_exercicio</name>
-        <field>dt_inicio_exercicio</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>ds_sexo</name>
+    <fields>
+      <field>
+        <name>q55_3</name>
         <rename>ds_sexo</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ds_profissao</name>
+      </field>
+      <field>
+        <name>q55_10</name>
         <rename>ds_profissao</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ds_tipo_vinculo</name>
+      </field>
+      <field>
+        <name>d55_11</name>
         <rename>ds_tipo_vinculo</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ds_funcao</name>
+      </field>
+      <field>
+        <name>q55_12</name>
         <rename>ds_funcao</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>dt_inicio_exercicio</name>
-        <rename>dt_inicio_exercicio</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>ds_faixa_etaria</name>
+      </field>
+      <field>
+        <name>q55_13</name>
+      </field>
+      <field>
+        <name>d55_2_Faixas_etarias</name>
         <rename>ds_faixa_etaria</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ds_nivel_escolaridade</name>
+      </field>
+      <field>
+        <name>d55_9</name>
         <rename>ds_nivel_escolaridade</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>sk_geografia</name>
-        <rename>sk_geografia</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>sk_tempo</name>
-        <rename>sk_tempo</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>sk_gestao</name>
-        <rename>sk_gestao</rename>
-        <update>N</update>
-      </value>
-    </lookup>
+      </field>
+      <field>
+        <name>q7</name>
+        <rename>ds_gestao</rename>
+      </field>
+      <field>
+        <name>Município</name>
+      </field>
+      <field>
+        <name>UF</name>
+      </field>
+      <field>
+        <name>qIBGE7</name>
+      </field>
+      <field>
+        <name>N_Identificador</name>
+      </field>
+      <field>
+        <name>IBGE</name>
+      </field>
+      <field>
+        <name>q55_9</name>
+      </field>
+      <field>
+        <name>codigo_UF</name>
+      </field>
+      <field>
+        <name>Região</name>
+      </field>
+      <field>
+        <name>areaKm2</name>
+      </field>
+      <field>
+        <name>Pop_total_2022</name>
+      </field>
+      <field>
+        <name>Porte_pop2022</name>
+      </field>
+      <field>
+        <name>Q_incompleto</name>
+      </field>
+      <field>
+        <name>DataCenso</name>
+      </field>
+      <field>
+        <name>DataCenso_2024</name>
+      </field>
+      <field>
+        <name>q55_11</name>
+      </field>
+      <field>
+        <name>d55_9bin1</name>
+      </field>
+      <field>
+        <name>d55_9bin2</name>
+      </field>
+      <field>
+        <name>d55_9bin3</name>
+      </field>
+      <field>
+        <name>d55_10bin1</name>
+      </field>
+      <field>
+        <name>d55_10bin2</name>
+      </field>
+      <field>
+        <name>d55_10bin3</name>
+      </field>
+      <field>
+        <name>d55_10bin4</name>
+      </field>
+      <field>
+        <name>d55_10bin5</name>
+      </field>
+      <field>
+        <name>d55_11bin1</name>
+      </field>
+      <field>
+        <name>d55_11bin2</name>
+      </field>
+      <field>
+        <name>d55_11bin3</name>
+      </field>
+      <field>
+        <name>d55_11bin4</name>
+      </field>
+      <field>
+        <name>d55_9bin1_sum</name>
+      </field>
+      <field>
+        <name>d55_9bin2_sum</name>
+      </field>
+      <field>
+        <name>d55_9bin3_sum</name>
+      </field>
+      <field>
+        <name>d55_10bin1_sum</name>
+      </field>
+      <field>
+        <name>d55_10bin2_sum</name>
+      </field>
+      <field>
+        <name>d55_10bin3_sum</name>
+      </field>
+      <field>
+        <name>d55_10bin4_sum</name>
+      </field>
+      <field>
+        <name>d55_10bin5_sum</name>
+      </field>
+      <field>
+        <name>d55_11bin1_sum</name>
+      </field>
+      <field>
+        <name>d55_11bin2_sum</name>
+      </field>
+      <field>
+        <name>d55_11bin3_sum</name>
+      </field>
+      <field>
+        <name>d55_11bin4_sum</name>
+      </field>
+      <field>
+        <name>nu_trabalhadores</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>N_Identificador</name>
+      </remove>
+      <remove>
+        <name>IBGE</name>
+      </remove>
+      <remove>
+        <name>qIBGE7</name>
+      </remove>
+      <remove>
+        <name>codigo_UF</name>
+      </remove>
+      <remove>
+        <name>Região</name>
+      </remove>
+      <remove>
+        <name>areaKm2</name>
+      </remove>
+      <remove>
+        <name>Pop_total_2022</name>
+      </remove>
+      <remove>
+        <name>Porte_pop2022</name>
+      </remove>
+      <remove>
+        <name>Q_incompleto</name>
+      </remove>
+      <remove>
+        <name>DataCenso</name>
+      </remove>
+      <remove>
+        <name>DataCenso_2024</name>
+      </remove>
+      <remove>
+        <name>d55_9bin1</name>
+      </remove>
+      <remove>
+        <name>d55_9bin2</name>
+      </remove>
+      <remove>
+        <name>d55_9bin3</name>
+      </remove>
+      <remove>
+        <name>d55_10bin1</name>
+      </remove>
+      <remove>
+        <name>d55_10bin2</name>
+      </remove>
+      <remove>
+        <name>d55_10bin3</name>
+      </remove>
+      <remove>
+        <name>d55_10bin4</name>
+      </remove>
+      <remove>
+        <name>d55_10bin5</name>
+      </remove>
+      <remove>
+        <name>d55_11bin1</name>
+      </remove>
+      <remove>
+        <name>d55_11bin2</name>
+      </remove>
+      <remove>
+        <name>d55_11bin3</name>
+      </remove>
+      <remove>
+        <name>d55_11bin4</name>
+      </remove>
+      <remove>
+        <name>d55_9bin1_sum</name>
+      </remove>
+      <remove>
+        <name>d55_9bin2_sum</name>
+      </remove>
+      <remove>
+        <name>d55_9bin3_sum</name>
+      </remove>
+      <remove>
+        <name>d55_10bin1_sum</name>
+      </remove>
+      <remove>
+        <name>d55_10bin2_sum</name>
+      </remove>
+      <remove>
+        <name>d55_10bin3_sum</name>
+      </remove>
+      <remove>
+        <name>d55_10bin4_sum</name>
+      </remove>
+      <remove>
+        <name>d55_10bin5_sum</name>
+      </remove>
+      <remove>
+        <name>d55_11bin1_sum</name>
+      </remove>
+      <remove>
+        <name>d55_11bin2_sum</name>
+      </remove>
+      <remove>
+        <name>d55_11bin3_sum</name>
+      </remove>
+      <remove>
+        <name>d55_11bin4_sum</name>
+      </remove>
+      <remove>
+        <name>nu_trabalhadores</name>
+      </remove>
+      <remove>
+        <name>q55_9</name>
+      </remove>
+      <remove>
+        <name>q55_11</name>
+      </remove>
+      <meta>
+        <name>q55_13</name>
+        <rename>dt_inicio_exercicio</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>dd/MM/yyyy</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -2234,7 +2108,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>2240</xloc>
+      <xloc>576</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2298,8 +2172,8 @@
     </GUI>
   </step>
   <step>
-    <name>FL - Filtra Entrada de Linha Nulas</name>
-    <type>FilterRows</type>
+    <name>OUT - sfa.fato_equipe</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -2308,16 +2182,65 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>TR - Seleciona e Renomeia Variáveis</send_true_to>
-    <send_false_to/>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>N_Identificador</leftvalue>
-        <function>IS NOT NULL</function>
-        <rightvalue/>
-      </condition>
-    </compare>
+    <connection>Sistema Familia Acolhedora</connection>
+    <schema>sfa</schema>
+    <table>fato_equipe</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>ds_sexo</column_name>
+        <stream_name>ds_sexo</stream_name>
+      </field>
+      <field>
+        <column_name>ds_profissao</column_name>
+        <stream_name>ds_profissao</stream_name>
+      </field>
+      <field>
+        <column_name>ds_tipo_vinculo</column_name>
+        <stream_name>ds_tipo_vinculo</stream_name>
+      </field>
+      <field>
+        <column_name>ds_funcao</column_name>
+        <stream_name>ds_funcao</stream_name>
+      </field>
+      <field>
+        <column_name>dt_inicio_exercicio</column_name>
+        <stream_name>dt_inicio_exercicio</stream_name>
+      </field>
+      <field>
+        <column_name>ds_faixa_etaria</column_name>
+        <stream_name>ds_faixa_etaria</stream_name>
+      </field>
+      <field>
+        <column_name>ds_nivel_escolaridade</column_name>
+        <stream_name>ds_nivel_escolaridade</stream_name>
+      </field>
+      <field>
+        <column_name>sk_geografia</column_name>
+        <stream_name>sk_geografia</stream_name>
+      </field>
+      <field>
+        <column_name>sk_tempo</column_name>
+        <stream_name>sk_tempo</stream_name>
+      </field>
+      <field>
+        <column_name>sk_gestao</column_name>
+        <stream_name>sk_gestao</stream_name>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -2327,7 +2250,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
+      <xloc>2240</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>

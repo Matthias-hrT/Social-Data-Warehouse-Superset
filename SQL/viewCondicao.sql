@@ -1,5 +1,5 @@
 create materialized view sfa.vw_fato_acolhimento_condicao as select
-	-- 0. Chaves Estruturais
+	-- 0. Chaves Estruturais 
 	fa.pk_acolhimento,
 	fa.sk_tempo,
 	fa.sk_geografia,

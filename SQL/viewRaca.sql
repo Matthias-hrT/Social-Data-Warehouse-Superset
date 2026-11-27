@@ -1,4 +1,4 @@
--- 1. Criação da View Materializada Temática
+-- 1. Criação da View Materializada Temática 
 create materialized view sfa.vw_fato_acolhimento_raca as select 
     -- 0. Chaves Estruturais
     fa.pk_acolhimento,
